@@ -1,0 +1,24 @@
+body{
+    padding: 1.5em;
+    margin: 0 auto;
+}
+
+
+main{
+    font-family: "Poppins", sans-serif;
+}
+
+h1{
+    font-weight: 600;
+    font-size: larger;
+}
+
+.semua article h2{
+    font-size: medium;
+    font-weight: 600;
+}
+
+.ayat{
+    font-size:large;
+}
+
