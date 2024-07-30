@@ -1,14 +1,20 @@
-body{
-    padding: 1.5em;
-    margin: 0 auto;
+*{
+    padding: 0;
 }
 
+body{
+    margin: 1.3em;
+}
+
+.pdf:hover{
+    color: red;
+}
 
 main{
     font-family: "Poppins", sans-serif;
 }
 
-h1{
+.judul{
     font-weight: 600;
     font-size: larger;
 }
@@ -22,3 +28,6 @@ h1{
     font-size:large;
 }
 
+article p {
+    text-align: justify;
+}
