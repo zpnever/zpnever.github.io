@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="id">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>TEST PERTEMUAN 2</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+				font-size: 0.9rem;
+			}
+
+			body {
+				font-family: "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+				background-image: url("/1359451.png");
+				background-size: cover;
+				background-attachment: fixed;
+				color: #333;
+				line-height: 1.6;
+				min-height: 100vh;
+				padding: 40px 20px;
+			}
+
+			.container {
+				max-width: 700px;
+				margin: auto;
+				background: #fff;
+				padding: 40px;
+				border-radius: 20px;
+				box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+			}
+
+			h1 {
+				text-align: center;
+				background: linear-gradient(135deg, #eac066 0%, #cea141 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				margin-bottom: 40px;
+				font-size: 2.5em;
+				font-weight: 800;
+				letter-spacing: -0.5px;
+			}
+
+			.question {
+				background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+				padding: 25px;
+				margin-bottom: 30px;
+				border-radius: 15px;
+				border-left: 6px solid #667eea;
+				transition: all 0.3s ease;
+			}
+
+			.question:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+			}
+
+			.question h3 {
+				margin-top: 0;
+				margin-bottom: 20px;
+				color: #2d3748;
+				font-size: 1.2em;
+				font-weight: 600;
+			}
+
+			.option {
+				margin: 12px 0;
+			}
+
+			.option label {
+				display: flex;
+				align-items: center;
+				cursor: pointer;
+				padding: 15px 20px;
+				border-radius: 10px;
+				background: white;
+				border: 2px solid #e2e8f0;
+				transition: all 0.3s ease;
+				position: relative;
+			}
+
+			.option label:hover {
+				border-color: #667eea;
+				background: #f7fafc;
+				transform: translateX(5px);
+			}
+
+			.option input[type="radio"] {
+				margin-right: 15px;
+				width: 20px;
+				height: 20px;
+				cursor: pointer;
+				accent-color: #667eea;
+			}
+
+			.option label.selected {
+				background: #eef2ff;
+				border-color: #667eea;
+			}
+
+			.option label.correct {
+				background: #d4edda;
+				border-color: #28a745;
+				animation: correctPulse 0.5s ease;
+			}
+
+			.option label.incorrect {
+				background: #f8d7da;
+				border-color: #dc3545;
+				animation: shake 0.5s ease;
+			}
+
+			@keyframes correctPulse {
+				0%,
+				100% {
+					transform: scale(1);
+				}
+				50% {
+					transform: scale(1.02);
+				}
+			}
+
+			@keyframes shake {
+				0%,
+				100% {
+					transform: translateX(0);
+				}
+				25% {
+					transform: translateX(-5px);
+				}
+				75% {
+					transform: translateX(5px);
+				}
+			}
+
+			.feedback {
+				margin-top: 20px;
+				padding: 15px 20px;
+				border-radius: 10px;
+				display: none;
+				font-weight: 600;
+				animation: slideDown 0.3s ease;
+			}
+
+			@keyframes slideDown {
+				from {
+					opacity: 0;
+					transform: translateY(-10px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			.correct-feedback {
+				background: linear-gradient(135deg, #d4edda 0%, #a8e6b0 100%);
+				color: #155724;
+				border-left: 4px solid #28a745;
+			}
+
+			.incorrect-feedback {
+				background: linear-gradient(135deg, #f8d7da 0%, #f5c2c7 100%);
+				color: #721c24;
+				border-left: 4px solid #dc3545;
+			}
+
+			.rationale {
+				font-weight: normal;
+				margin-top: 10px;
+				font-style: italic;
+				font-size: 0.95em;
+				color: #555;
+				padding: 12px;
+				background: rgba(255, 255, 255, 0.5);
+				border-radius: 8px;
+				border-left: 3px solid;
+			}
+
+			.correct-feedback .rationale {
+				border-left-color: #155724;
+			}
+
+			.incorrect-feedback .rationale {
+				border-left-color: #721c24;
+			}
+
+			#score-area {
+				text-align: center;
+				font-size: 1.8em;
+				font-weight: 700;
+				margin-top: 40px;
+				padding: 30px;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				color: white;
+				border-radius: 15px;
+				box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+				animation: slideDown 0.5s ease;
+			}
+
+			.score-details {
+				font-size: 0.6em;
+				margin-top: 15px;
+				opacity: 0.9;
+			}
+
+			.progress-bar {
+				width: 100%;
+				height: 30px;
+				background: #e2e8f0;
+				border-radius: 15px;
+				overflow: hidden;
+				margin-top: 20px;
+				position: relative;
+			}
+
+			.progress-fill {
+				height: 100%;
+				background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+				width: 0%;
+				transition: width 1s ease;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: white;
+				font-weight: 600;
+				font-size: 0.9em;
+			}
+
+			.icon {
+				display: inline-block;
+				margin-right: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<h1>Kuis Dasar HTML Pertemuan 2</h1>
+			<form id="quiz-form">
+				<!-- Questions will be generated by JavaScript -->
+			</form>
+			<div id="score-area" style="display: none"></div>
+		</div>
+
+		<script>
+			const quizData = [
+				{
+					question:
+						"Bagian dari pengembangan web yang bertanggung jawab atas tampilan yang dilihat dan digunakan oleh pengguna (user) adalah...",
+					options: ["Back-End", "Front-End", "Full-Stack", "Database"],
+					answerIndex: 1,
+					rationale:
+						"Front-End adalah komponen yang mengurus tampilan yang user lihat dan gunakan, termasuk desain antarmuka.",
+				},
+				{
+					question:
+						"HTML adalah sebuah bahasa yang menggunakan apa untuk membuat halaman web?",
+					options: [
+						"Framework",
+						"Markup atau Penanda (Tag)",
+						"Logika Interaksi",
+						"Gaya Visual (Style)",
+					],
+					answerIndex: 1,
+					rationale:
+						"HTML adalah bahasa yang menggunakan markup atau penanda (yang disebut Tag) untuk menyusun konten halaman web.",
+				},
+				{
+					question:
+						"Manakah fungsi yang paling tepat untuk bahasa CSS dalam pengembangan Front-End?",
+					options: [
+						"Menambah interaksi dan logika",
+						"Membangun kerangka (Structure) website",
+						"Memberi gaya (Presentation) pada website",
+						"Mengakses database di server",
+					],
+					answerIndex: 2,
+					rationale:
+						"CSS (Cascading Style Sheets) adalah bahasa yang berfungsi untuk memberikan gaya dan presentasi pada elemen HTML.",
+				},
+				{
+					question:
+						"Dalam analogi yang membandingkan Front-End Language dengan bagian tubuh manusia, JavaScript diibaratkan sebagai...",
+					options: ["Structure", "Database", "Behavior", "Presentation"],
+					answerIndex: 2,
+					rationale:
+						"JavaScript dianalogikan sebagai Behavior (perilaku) karena fungsinya menambah interaksi dan logika.",
+				},
+				{
+					question:
+						"Pada struktur sintaks HTML, bagian yang wajib menampilkan semua konten (teks, gambar, dll.) yang akan dilihat oleh pengguna di browser adalah tag...",
+					options: [
+						"&lt;head&gt;",
+						"&lt;title&gt;",
+						"&lt;html&gt;",
+						"&lt;body&gt;",
+					],
+					answerIndex: 3,
+					rationale:
+						"Tag <body> adalah bagian yang akan ditampilkan pada web browser sebagai konten utama halaman.",
+				},
+				{
+					question:
+						"Apa tujuan dari penulisan &lt;!DOCTYPE html&gt; di baris paling atas dokumen HTML?",
+					options: [
+						"Untuk mendefinisikan bahasa yang digunakan",
+						"Untuk membuat paragraf pertama",
+						"Untuk mendeklarasikan tipe dokumen dan versi HTML",
+						"Untuk menutup tag &lt;html&gt;",
+					],
+					answerIndex: 2,
+					rationale:
+						"Deklarasi ini wajib ada untuk memberi tahu browser bahwa dokumen tersebut adalah HTML, dan pada kasus ini, versi HTML 5.",
+				},
+				{
+					question:
+						"Jenis website yang kontennya tetap dan tidak berubah sesuai dengan interaksi pengguna, seperti halaman profil perusahaan, disebut website...",
+					options: ["Dinamis", "Interaktif", "Statis", "Responsif"],
+					answerIndex: 2,
+					rationale:
+						"Website Statis adalah jenis website yang kontennya tetap, seperti halaman profil perusahaan.",
+				},
+				{
+					question:
+						"Manakah Tag HTML yang biasanya diletakkan di dalam &lt;head&gt; dan berfungsi untuk memberikan judul pada tab browser?",
+					options: ["&lt;h1&gt;", "&lt;p&gt;", "&lt;title&gt;", "&lt;body&gt;"],
+					answerIndex: 2,
+					rationale:
+						"Tag <title> digunakan untuk membuat judul/title web yang tampil di tab browser, dan diletakkan di dalam <head>.",
+				},
+				{
+					question:
+						"Dari materi yang sudah dibahas, langkah yang benar untuk mengubah file teks biasa (*.txt*) menjadi file HTML yang dapat dibuka di browser adalah...",
+					options: [
+						"Menambahkan tag &lt;html&gt; di awal file.",
+						"Mengubah ekstensi (*extension*) file dari *.txt* menjadi *.html*.",
+						"Membuka file *.txt* langsung dengan VS Code.",
+						"Mengubah &lt;body&gt; menjadi &lt;html&gt;.",
+					],
+					answerIndex: 1,
+					rationale:
+						"Perubahan ekstensi file melalui rename adalah cara yang benar untuk menandai file sebagai dokumen HTML.",
+				},
+				{
+					question:
+						"Versi HTML yang disebutkan dalam materi sebagai versi HTML yang saat ini digunakan adalah...",
+					options: ["HTML 3.2", "XHTML 2.0", "HTML 4.01", "HTML 5"],
+					answerIndex: 3,
+					rationale:
+						"HTML 5 (dirilis 28 Oktober 2014) adalah versi HTML yang saat ini digunakan.",
+				},
+			];
+
+			const quizForm = document.getElementById("quiz-form");
+			const scoreArea = document.getElementById("score-area");
+			let answeredQuestions = new Set();
+
+			function loadQuiz() {
+				quizData.forEach((item, index) => {
+					const questionElement = document.createElement("div");
+					questionElement.className = "question";
+					questionElement.id = "q" + index;
+
+					let optionsHtml = "";
+					item.options.forEach((option, optionIndex) => {
+						optionsHtml += `
+			                <div class="option">
+			                    <label data-question="${index}" data-option="${optionIndex}">
+			                        <input type="radio" name="question${index}" value="${optionIndex}">
+			                        ${option}
+			                    </label>
+			                </div>
+			            `;
+					});
+
+					questionElement.innerHTML = `
+			            <h3>${index + 1}. ${item.question}</h3>
+			            ${optionsHtml}
+			            <div id="feedback${index}" class="feedback"></div>
+			        `;
+					quizForm.appendChild(questionElement);
+				});
+
+				// Add event listeners to all radio buttons
+				document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+					radio.addEventListener("change", handleAnswerSelect);
+				});
+			}
+
+			function handleAnswerSelect(event) {
+				const selectedOption = event.target;
+				const questionIndex = parseInt(
+					selectedOption.name.replace("question", "")
+				);
+				const userAnswerIndex = parseInt(selectedOption.value);
+				const item = quizData[questionIndex];
+				const feedbackElement = document.getElementById(
+					"feedback" + questionIndex
+				);
+
+				// Mark question as answered
+				answeredQuestions.add(questionIndex);
+
+				// Get all labels for this question
+				const allLabels = document.querySelectorAll(
+					`label[data-question="${questionIndex}"]`
+				);
+
+				// Remove previous styling
+				allLabels.forEach((label) => {
+					label.classList.remove("selected", "correct", "incorrect");
+				});
+
+				// Add selected class to chosen option
+				const selectedLabel = document.querySelector(
+					`label[data-question="${questionIndex}"][data-option="${userAnswerIndex}"]`
+				);
+				selectedLabel.classList.add("selected");
+
+				// Check if answer is correct
+				const isCorrect = userAnswerIndex === item.answerIndex;
+
+				// Show feedback immediately
+				feedbackElement.style.display = "block";
+
+				if (isCorrect) {
+					selectedLabel.classList.add("correct");
+					feedbackElement.className = "feedback correct-feedback";
+					feedbackElement.innerHTML =
+						'<span class="icon">✅</span><strong>Jawaban BENAR!</strong>';
+				} else {
+					selectedLabel.classList.add("incorrect");
+					const correctAnswer = item.options[item.answerIndex];
+					feedbackElement.className = "feedback incorrect-feedback";
+					feedbackElement.innerHTML = `
+			            <div><span class="icon">❌</span><strong>Jawaban SALAH.</strong></div>
+			            <div style="margin-top: 8px;">Jawaban yang benar adalah: <strong>${correctAnswer}</strong></div>
+			            <div class="rationale">💡 Penjelasan: ${item.rationale}</div>
+			        `;
+
+					// Highlight correct answer
+					const correctLabel = document.querySelector(
+						`label[data-question="${questionIndex}"][data-option="${item.answerIndex}"]`
+					);
+					correctLabel.classList.add("correct");
+				}
+
+				// Update score if all questions answered
+				updateScore();
+			}
+
+			function updateScore() {
+				if (answeredQuestions.size === quizData.length) {
+					let score = 0;
+
+					quizData.forEach((item, index) => {
+						const selectedOption = document.querySelector(
+							`input[name="question${index}"]:checked`
+						);
+						if (selectedOption) {
+							const userAnswerIndex = parseInt(selectedOption.value);
+							if (userAnswerIndex === item.answerIndex) {
+								score++;
+							}
+						}
+					});
+
+					const percentage = Math.round((score / quizData.length) * 100);
+
+					scoreArea.style.display = "block";
+					scoreArea.innerHTML = `
+			            <div><span class="icon">🏆</span> Skor Total Anda</div>
+			            <div style="font-size: 1.5em; margin: 15px 0;">${score} dari ${
+						quizData.length
+					}</div>
+			            <div class="progress-bar">
+			                <div class="progress-fill" id="progress-fill">${percentage}%</div>
+			            </div>
+			            <div class="score-details">
+			                ${
+												percentage >= 80
+													? "🎉 Luar biasa!"
+													: percentage >= 60
+													? "👍 Bagus!"
+													: "💪 Terus belajar!"
+											}
+			            </div>
+			        `;
+
+					// Animate progress bar
+					setTimeout(() => {
+						document.getElementById("progress-fill").style.width =
+							percentage + "%";
+					}, 100);
+				}
+			}
+
+			loadQuiz();
+		</script>
+	</body>
+</html>
