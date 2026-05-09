@@ -1,0 +1,556 @@
+
+<style>
+  :root { --phase-gap: 24px; }
+  * { box-sizing: border-box; }
+  .sr-only { position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0); }
+  .roadmap-wrap { padding: 0.5rem 0 2rem; font-size: 14px; }
+  .header-row { display:flex; align-items:center; gap:10px; margin-bottom:24px; }
+  .logo-pill { background:var(--color-background-info); color:var(--color-text-info); font-size:13px; font-weight:500; padding:4px 12px; border-radius:20px; }
+  .tabs { display:flex; gap:6px; margin-bottom:20px; flex-wrap:wrap; }
+  .tab { padding:6px 14px; border-radius:20px; border:0.5px solid var(--color-border-secondary); font-size:13px; cursor:pointer; color:var(--color-text-secondary); background:transparent; transition:all .2s; }
+  .tab.active { background:var(--color-text-primary); color:var(--color-background-primary); border-color:var(--color-text-primary); }
+  .section { display:none; }
+  .section.visible { display:block; }
+
+  /* Phase cards */
+  .phase-card { border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); margin-bottom:16px; overflow:hidden; }
+  .phase-header { display:flex; align-items:center; gap:12px; padding:14px 16px; cursor:pointer; border-bottom:0.5px solid transparent; transition:border-color .2s; }
+  .phase-header:hover { border-bottom-color:var(--color-border-tertiary); }
+  .phase-badge { font-size:11px; font-weight:500; padding:3px 10px; border-radius:12px; white-space:nowrap; }
+  .ph-0 .phase-badge { background:#EAF3DE; color:#27500A; }
+  .ph-1 .phase-badge { background:#E6F1FB; color:#0C447C; }
+  .ph-2 .phase-badge { background:#FAEEDA; color:#633806; }
+  .ph-3 .phase-badge { background:#EEEDFE; color:#3C3489; }
+  .ph-4 .phase-badge { background:#E1F5EE; color:#085041; }
+  .phase-title { font-size:15px; font-weight:500; flex:1; }
+  .phase-period { font-size:12px; color:var(--color-text-secondary); }
+  .chevron { font-size:12px; color:var(--color-text-secondary); transition:transform .25s; }
+  .phase-card.open .chevron { transform:rotate(90deg); }
+  .phase-card.open .phase-header { border-bottom-color:var(--color-border-tertiary); }
+  .phase-body { display:none; padding:16px; }
+  .phase-card.open .phase-body { display:block; }
+
+  /* Items inside phases */
+  .item-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+  @media(max-width:500px) { .item-grid { grid-template-columns:1fr; } }
+  .item-box { background:var(--color-background-secondary); border-radius:var(--border-radius-md); padding:12px; }
+  .item-label { font-size:11px; color:var(--color-text-secondary); text-transform:uppercase; letter-spacing:.04em; margin-bottom:6px; }
+  .item-list { margin:0; padding:0; list-style:none; }
+  .item-list li { font-size:13px; padding:3px 0; color:var(--color-text-primary); display:flex; gap:6px; }
+  .item-list li::before { content:"›"; color:var(--color-text-secondary); flex-shrink:0; }
+  .kpi-row { display:flex; gap:10px; margin-top:12px; flex-wrap:wrap; }
+  .kpi { background:var(--color-background-primary); border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-md); padding:8px 12px; flex:1; min-width:100px; }
+  .kpi-val { font-size:18px; font-weight:500; }
+  .kpi-lbl { font-size:11px; color:var(--color-text-secondary); }
+  .warn-box { background:var(--color-background-warning); border:0.5px solid var(--color-border-warning); border-radius:var(--border-radius-md); padding:10px 12px; margin-top:12px; font-size:13px; color:var(--color-text-warning); }
+  .success-box { background:var(--color-background-success); border:0.5px solid var(--color-border-success); border-radius:var(--border-radius-md); padding:10px 12px; margin-top:12px; font-size:13px; color:var(--color-text-success); }
+
+  /* AI section */
+  .ai-card { border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-lg); margin-bottom:14px; overflow:hidden; }
+  .ai-head { padding:12px 16px; border-bottom:0.5px solid var(--color-border-tertiary); font-weight:500; font-size:14px; display:flex; align-items:center; gap:10px; }
+  .ai-verdict { font-size:11px; font-weight:500; padding:3px 10px; border-radius:12px; margin-left:auto; }
+  .v-yes { background:#EAF3DE; color:#27500A; }
+  .v-no { background:#FCEBEB; color:#791F1F; }
+  .v-cond { background:#FAEEDA; color:#633806; }
+  .ai-body { padding:14px 16px; font-size:13px; color:var(--color-text-secondary); line-height:1.7; }
+  .ai-pros-cons { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
+  @media(max-width:480px) { .ai-pros-cons { grid-template-columns:1fr; } }
+  .pros, .cons { border-radius:var(--border-radius-md); padding:10px 12px; }
+  .pros { background:var(--color-background-success); }
+  .cons { background:var(--color-background-danger); }
+  .pros p, .cons p { margin:0 0 4px; font-size:11px; font-weight:500; color:var(--color-text-secondary); }
+  .pros li, .cons li { font-size:12px; }
+  .pros li { color:var(--color-text-success); }
+  .cons li { color:var(--color-text-danger); }
+
+  /* Risk */
+  .risk-row { display:flex; align-items:start; gap:12px; padding:12px; border:0.5px solid var(--color-border-tertiary); border-radius:var(--border-radius-md); margin-bottom:10px; }
+  .risk-level { font-size:11px; font-weight:500; padding:3px 10px; border-radius:12px; white-space:nowrap; flex-shrink:0; }
+  .risk-high { background:#FCEBEB; color:#791F1F; }
+  .risk-med { background:#FAEEDA; color:#633806; }
+  .risk-low { background:#EAF3DE; color:#27500A; }
+  .risk-title { font-size:13px; font-weight:500; margin-bottom:3px; }
+  .risk-desc { font-size:12px; color:var(--color-text-secondary); }
+  .risk-mitigate { font-size:12px; color:var(--color-text-info); margin-top:4px; }
+</style>
+
+<div class="roadmap-wrap">
+  <h2 class="sr-only">TRABAS Long-Term Business Roadmap: Rencana jangka panjang sistem pre-order tiket wisata dan AI itinerary</h2>
+
+  <div class="header-row">
+    <span class="logo-pill">TRABAS</span>
+    <span style="font-size:13px;color:var(--color-text-secondary)">Rencana Jangka Panjang · 2026–2031</span>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('phases')">Fase Pengembangan</button>
+    <button class="tab" onclick="switchTab('ai')">Strategi AI & LLM</button>
+    <button class="tab" onclick="switchTab('risk')">Risiko & Mitigasi</button>
+    <button class="tab" onclick="switchTab('biz')">Model Bisnis</button>
+  </div>
+
+  <!-- ===================== PHASES ===================== -->
+  <div id="sec-phases" class="section visible">
+
+    <div class="phase-card ph-0 open">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <span class="phase-badge">Pre-Launch</span>
+        <span class="phase-title">Fondasi & MVP</span>
+        <span class="phase-period">Bulan 1–6</span>
+        <span class="chevron">›</span>
+      </div>
+      <div class="phase-body">
+        <p style="font-size:13px;color:var(--color-text-secondary);margin:0 0 12px">Fokus utama: bangun sesuatu yang benar-benar <em>bisa dipakai</em>, bukan sesuatu yang terlihat canggih di pitch deck. Pilih 1 kota, 20–30 destinasi, dan solve satu masalah dengan sempurna.</p>
+        <div class="item-grid">
+          <div class="item-box">
+            <div class="item-label">Yang harus dibangun</div>
+            <ul class="item-list">
+              <li>App mobile React Native (Android dulu)</li>
+              <li>Database destinasi wisata manual (Yogyakarta)</li>
+              <li>Itinerary builder sederhana (tanpa AI dulu)</li>
+              <li>Integrasi 1 payment gateway (Midtrans)</li>
+              <li>QR code e-ticket basic</li>
+              <li>Dashboard admin vendor</li>
+            </ul>
+          </div>
+          <div class="item-box">
+            <div class="item-label">Yang TIDAK perlu dibangun</div>
+            <ul class="item-list">
+              <li>AI route optimization canggih</li>
+              <li>iOS app (tunda 6 bulan)</li>
+              <li>Multi-kota coverage</li>
+              <li>Fitur social sharing</li>
+              <li>Real-time traffic integration</li>
+              <li>Semua yang ada di pitch deck</li>
+            </ul>
+          </div>
+        </div>
+        <div class="item-box" style="margin-bottom:12px">
+          <div class="item-label">Prioritas #1: Akuisisi Vendor (bukan user)</div>
+          <ul class="item-list">
+            <li>Rekrut 2 orang "vendor hunter" lokal di Yogyakarta</li>
+            <li>Target 25 destinasi onboard sebelum soft launch</li>
+            <li>Gratis komisi 0% untuk 6 bulan pertama (insentif onboarding)</li>
+            <li>Bantu vendor yang tidak paham digital dengan pendampingan langsung</li>
+          </ul>
+        </div>
+        <div class="kpi-row">
+          <div class="kpi"><div class="kpi-val">25+</div><div class="kpi-lbl">Destinasi aktif</div></div>
+          <div class="kpi"><div class="kpi-val">500</div><div class="kpi-lbl">User uji coba</div></div>
+          <div class="kpi"><div class="kpi-val">1 kota</div><div class="kpi-lbl">Coverage</div></div>
+        </div>
+        <div class="warn-box">⚠ Jangan ekspansi kota sebelum Net Promoter Score (NPS) di Yogyakarta ≥ 40. Validasi dulu, baru scale.</div>
+      </div>
+    </div>
+
+    <div class="phase-card ph-1">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <span class="phase-badge">Phase 1</span>
+        <span class="phase-title">Traction & Validasi Pasar</span>
+        <span class="phase-period">Bulan 7–18</span>
+        <span class="chevron">›</span>
+      </div>
+      <div class="phase-body">
+        <p style="font-size:13px;color:var(--color-text-secondary);margin:0 0 12px">Bukti bahwa orang mau bayar dan kembali menggunakan. Ini adalah fase paling krusial — banyak startup mati di sini karena terburu-buru scale.</p>
+        <div class="item-grid">
+          <div class="item-box">
+            <div class="item-label">Fitur yang ditambahkan</div>
+            <ul class="item-list">
+              <li>AI itinerary generator (via OpenAI/Gemini API)</li>
+              <li>Budget planner terintegrasi</li>
+              <li>Review & rating sistem</li>
+              <li>iOS app launch</li>
+              <li>Ekspansi ke Bandung & Bali</li>
+              <li>Sistem referral user</li>
+            </ul>
+          </div>
+          <div class="item-box">
+            <div class="item-label">Strategi pertumbuhan</div>
+            <ul class="item-list">
+              <li>Partnership 3 travel vlogger micro-influencer</li>
+              <li>SEO konten itinerary (blog terintegrasi)</li>
+              <li>B2B: jual ke sekolah untuk study tour</li>
+              <li>Corporate outing packages</li>
+              <li>Push notif cerdas pre-weekend</li>
+            </ul>
+          </div>
+        </div>
+        <div class="item-box" style="margin-bottom:12px">
+          <div class="item-label">Model monetisasi yang mulai aktif</div>
+          <ul class="item-list">
+            <li>Komisi 5–7% per transaksi tiket (mulai bulan ke-7)</li>
+            <li>Premium subscription Rp 29.000/bulan (no ads + fitur ekstra)</li>
+            <li>B2B flat fee untuk paket study tour & corporate</li>
+          </ul>
+        </div>
+        <div class="kpi-row">
+          <div class="kpi"><div class="kpi-val">5.000</div><div class="kpi-lbl">Monthly Active Users</div></div>
+          <div class="kpi"><div class="kpi-val">150+</div><div class="kpi-lbl">Destinasi aktif</div></div>
+          <div class="kpi"><div class="kpi-val">3 kota</div><div class="kpi-lbl">Coverage</div></div>
+          <div class="kpi"><div class="kpi-val">Rp 50jt</div><div class="kpi-lbl">GMV/bulan</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-card ph-2">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <span class="phase-badge">Phase 2</span>
+        <span class="phase-title">Scale & Ekspansi Nasional</span>
+        <span class="phase-period">Bulan 19–36</span>
+        <span class="chevron">›</span>
+      </div>
+      <div class="phase-body">
+        <p style="font-size:13px;color:var(--color-text-secondary);margin:0 0 12px">Dari kota wisata utama ke seluruh Indonesia. Di fase ini infrastruktur teknologi harus diperkuat karena load mulai besar.</p>
+        <div class="item-grid">
+          <div class="item-box">
+            <div class="item-label">Teknologi yang dimatangkan</div>
+            <ul class="item-list">
+              <li>Fine-tuned model AI khusus wisata Indonesia</li>
+              <li>Sistem caching harga tiket otomatis</li>
+              <li>Real-time availability tracking</li>
+              <li>Offline mode untuk area sinyal lemah</li>
+              <li>API publik untuk mitra travel agent</li>
+            </ul>
+          </div>
+          <div class="item-box">
+            <div class="item-label">Ekspansi coverage</div>
+            <ul class="item-list">
+              <li>15+ kota wisata utama (Lombok, Manado, Raja Ampat, dll)</li>
+              <li>Program desa wisata digital (kolaborasi Kemenparekraf)</li>
+              <li>Integrasi transportasi (bus, kereta via KAI)</li>
+              <li>Partnership hotel & penginapan lokal</li>
+            </ul>
+          </div>
+        </div>
+        <div class="item-box" style="margin-bottom:12px">
+          <div class="item-label">Pendanaan yang dibutuhkan di fase ini</div>
+          <ul class="item-list">
+            <li>Seed round: Rp 5–15 miliar (target Q3 tahun ke-2)</li>
+            <li>Investor ideal: VC yang fokus di tourism-tech atau UMKM digital</li>
+            <li>Alternatif: grant dari Bekraf / Kemenparekraf / startup incubator</li>
+          </ul>
+        </div>
+        <div class="kpi-row">
+          <div class="kpi"><div class="kpi-val">50K</div><div class="kpi-lbl">MAU</div></div>
+          <div class="kpi"><div class="kpi-val">1.000+</div><div class="kpi-lbl">Destinasi</div></div>
+          <div class="kpi"><div class="kpi-val">15+ kota</div><div class="kpi-lbl">Coverage</div></div>
+          <div class="kpi"><div class="kpi-val">Rp 1M</div><div class="kpi-lbl">GMV/bulan</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-card ph-3">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <span class="phase-badge">Phase 3</span>
+        <span class="phase-title">Ekosistem & Platform Play</span>
+        <span class="phase-period">Bulan 37–54</span>
+        <span class="chevron">›</span>
+      </div>
+      <div class="phase-body">
+        <p style="font-size:13px;color:var(--color-text-secondary);margin:0 0 12px">Trabas bukan lagi sekadar aplikasi — menjadi ekosistem yang susah ditinggalkan oleh vendor maupun user.</p>
+        <div class="item-grid">
+          <div class="item-box">
+            <div class="item-label">Produk baru yang diluncurkan</div>
+            <ul class="item-list">
+              <li>Trabas for Vendors (SaaS manajemen destinasi)</li>
+              <li>Trabas Travel Insurance partnership</li>
+              <li>Trabas Pay (dompet digital perjalanan)</li>
+              <li>White-label API untuk travel agent</li>
+              <li>Data analytics untuk Pemda/Dinas Pariwisata</li>
+            </ul>
+          </div>
+          <div class="item-box">
+            <div class="item-label">Sumber pendapatan baru</div>
+            <ul class="item-list">
+              <li>SaaS fee vendor Rp 99K–499K/bulan</li>
+              <li>API license fee untuk travel agent</li>
+              <li>Data insight reports untuk Pemda</li>
+              <li>Komisi asuransi perjalanan</li>
+              <li>Display ads premium (targeted)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="kpi-row">
+          <div class="kpi"><div class="kpi-val">300K</div><div class="kpi-lbl">MAU</div></div>
+          <div class="kpi"><div class="kpi-val">Series A</div><div class="kpi-lbl">Target funding</div></div>
+          <div class="kpi"><div class="kpi-val">Break-even</div><div class="kpi-lbl">Unit economics</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase-card ph-4">
+      <div class="phase-header" onclick="togglePhase(this)">
+        <span class="phase-badge">Phase 4</span>
+        <span class="phase-title">Regional Expansion & IPO Prep</span>
+        <span class="phase-period">Bulan 55–72</span>
+        <span class="chevron">›</span>
+      </div>
+      <div class="phase-body">
+        <p style="font-size:13px;color:var(--color-text-secondary);margin:0 0 12px">Masuk pasar ASEAN (Malaysia, Thailand, Vietnam) dengan keunggulan teknologi AI yang sudah mature dan playbook yang terbukti dari Indonesia.</p>
+        <div class="item-grid">
+          <div class="item-box">
+            <div class="item-label">Target ekspansi</div>
+            <ul class="item-list">
+              <li>Malaysia (Sabah, Sarawak — wisata alam serupa)</li>
+              <li>Thailand (Chiang Mai, Pai — wisata budaya)</li>
+              <li>Vietnam (Ha Long, Sapa)</li>
+              <li>Localization bahasa & mata uang lokal</li>
+            </ul>
+          </div>
+          <div class="item-box">
+            <div class="item-label">Exit strategy options</div>
+            <ul class="item-list">
+              <li>IPO di BEI (Bursa Efek Indonesia)</li>
+              <li>Strategic acquisition oleh Traveloka/Gojek</li>
+              <li>Merger dengan platform regional</li>
+              <li>Tetap independent + Series B/C</li>
+            </ul>
+          </div>
+        </div>
+        <div class="success-box">✓ Di titik ini, Trabas sudah punya moat yang sulit ditiru: data destinasi lokal terlengkap di Asia Tenggara + AI yang ditraining khusus konteks wisata nusantara.</div>
+        <div class="kpi-row">
+          <div class="kpi"><div class="kpi-val">1M+</div><div class="kpi-lbl">MAU</div></div>
+          <div class="kpi"><div class="kpi-val">4 negara</div><div class="kpi-lbl">Coverage</div></div>
+          <div class="kpi"><div class="kpi-val">Rp 50M+</div><div class="kpi-lbl">GMV/bulan</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== AI ===================== -->
+  <div id="sec-ai" class="section">
+    <p style="font-size:13px;color:var(--color-text-secondary);margin:0 0 16px;line-height:1.7">Pertanyaan kunci: apakah itinerary AI via OpenAI/Gemini/Groq API masuk akal secara teknis dan bisnis? Jawaban singkat: <strong>ya, dan ini justru keputusan paling strategis</strong> — tapi dengan catatan penting soal timing dan cara implementasinya.</p>
+
+    <div class="ai-card">
+      <div class="ai-head">
+        <i class="ti ti-brand-openai" aria-hidden="true"></i>
+        OpenAI GPT-4o / GPT-4o mini
+        <span class="ai-verdict v-yes">Direkomendasikan (fase 1)</span>
+      </div>
+      <div class="ai-body">
+        Gunakan untuk generate itinerary natural language. User ketik "3 hari di Yogyakarta, budget 800ribu, suka kuliner dan budaya" — GPT menghasilkan rancangan perjalanan yang enak dibaca, kemudian Trabas inject data tiket & harga real dari database sendiri.
+        <div class="ai-pros-cons">
+          <div class="pros">
+            <p>Kelebihan</p>
+            <ul class="item-list">
+              <li style="color:var(--color-text-success)">Output paling natural & koheren</li>
+              <li style="color:var(--color-text-success)">Function calling untuk structured data</li>
+              <li style="color:var(--color-text-success)">GPT-4o mini sangat murah</li>
+              <li style="color:var(--color-text-success)">Ekosistem dokumentasi terlengkap</li>
+            </ul>
+          </div>
+          <div class="cons">
+            <p>Kelemahan</p>
+            <ul class="item-list">
+              <li style="color:var(--color-text-danger)">Data wisata Indonesia terbatas</li>
+              <li style="color:var(--color-text-danger)">Bisa "hallucinate" nama tempat</li>
+              <li style="color:var(--color-text-danger)">Biaya naik seiring scale</li>
+              <li style="color:var(--color-text-danger)">Data user ke server US</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-card">
+      <div class="ai-head">
+        <i class="ti ti-brand-google" aria-hidden="true"></i>
+        Google Gemini API
+        <span class="ai-verdict v-cond">Kondisional (jika butuh Maps)</span>
+      </div>
+      <div class="ai-body">
+        Keunggulan terbesar Gemini adalah integrasi native dengan Google Maps dan Places API. Jika Trabas butuh data jarak, estimasi waktu tempuh, dan jam buka tempat wisata secara real-time, kombinasi Gemini + Google Maps adalah yang paling mulus.
+        <div class="ai-pros-cons">
+          <div class="pros">
+            <p>Kelebihan</p>
+            <ul class="item-list">
+              <li style="color:var(--color-text-success)">Native Google Maps integration</li>
+              <li style="color:var(--color-text-success)">Gratis tier sangat generous</li>
+              <li style="color:var(--color-text-success)">Multimodal (bisa analisis foto wisata)</li>
+            </ul>
+          </div>
+          <div class="cons">
+            <p>Kelemahan</p>
+            <ul class="item-list">
+              <li style="color:var(--color-text-danger)">Kualitas Bahasa Indonesia masih di bawah GPT</li>
+              <li style="color:var(--color-text-danger)">API berubah-ubah (masih beta)</li>
+              <li style="color:var(--color-text-danger)">Double dependency ke Google</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-card">
+      <div class="ai-head">
+        <i class="ti ti-bolt" aria-hidden="true"></i>
+        Groq API (Llama / Mixtral)
+        <span class="ai-verdict v-cond">Kondisional (untuk kecepatan)</span>
+      </div>
+      <div class="ai-body">
+        Groq bukan model AI — ini adalah inference engine yang sangat cepat (ratusan token/detik). Cocok untuk fitur yang butuh respons instan seperti autocomplete destinasi atau saran cepat. Bukan untuk output kompleks seperti full itinerary 3 hari.
+        <div class="ai-pros-cons">
+          <div class="pros">
+            <p>Kelebihan</p>
+            <ul class="item-list">
+              <li style="color:var(--color-text-success)">Tercepat di industri saat ini</li>
+              <li style="color:var(--color-text-success)">Harga sangat murah</li>
+              <li style="color:var(--color-text-success)">Cocok untuk quick suggestions</li>
+            </ul>
+          </div>
+          <div class="cons">
+            <p>Kelemahan</p>
+            <ul class="item-list">
+              <li style="color:var(--color-text-danger)">Model open-source, kualitas terbatas</li>
+              <li style="color:var(--color-text-danger)">Tidak cocok untuk output panjang</li>
+              <li style="color:var(--color-text-danger)">Kurang baik di Bahasa Indonesia</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-card">
+      <div class="ai-head">
+        <i class="ti ti-server" aria-hidden="true"></i>
+        Fine-tuned model sendiri (jangka panjang)
+        <span class="ai-verdict v-yes">Target fase 3–4</span>
+      </div>
+      <div class="ai-body">
+        Di fase 3, Trabas sudah punya ribuan data perjalanan pengguna nyata, rating destinasi, dan pola itinerary yang berhasil. Ini adalah <em>training data emas</em> yang tidak dimiliki kompetitor manapun. Fine-tune model open-source (Llama 3, Qwen) dengan data ini untuk membuat AI yang benar-benar paham konteks wisata Indonesia.
+        <div class="success-box" style="margin-top:12px">✓ Inilah yang membuat AI itinerary Trabas menjadi <em>moat</em> jangka panjang — bukan karena pakai API OpenAI (siapapun bisa), tapi karena model ditraining dengan data wisata Indonesia yang hanya dimiliki Trabas.</div>
+      </div>
+    </div>
+
+    <div class="item-box" style="margin-top:4px">
+      <div class="item-label">Arsitektur AI yang Direkomendasikan</div>
+      <ul class="item-list">
+        <li>Fase 1–2: OpenAI GPT-4o mini sebagai "brain", database Trabas sebagai "ground truth"</li>
+        <li>Prompt engineering: inject data tiket + jam buka + rating ke context window sebelum generate</li>
+        <li>Validasi output: filter hasil AI dengan data real sebelum ditampilkan ke user</li>
+        <li>Fase 3+: Mulai fine-tune model sendiri, kurangi ketergantungan third-party API</li>
+        <li>Biaya estimasi awal: ~$0.05–0.15 per itinerary request (GPT-4o mini)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===================== RISK ===================== -->
+  <div id="sec-risk" class="section">
+    <div class="risk-row">
+      <span class="risk-level risk-high">Tinggi</span>
+      <div>
+        <div class="risk-title">Vendor tidak mau onboarding</div>
+        <div class="risk-desc">Pengelola wisata lokal (terutama desa wisata) tidak punya smartphone memadai, tidak mengerti digital, atau tidak percaya platform baru.</div>
+        <div class="risk-mitigate">→ Mitigasi: Tim field sales dedicated, bantuan device, komisi 0% 6 bulan pertama, pendampingan langsung.</div>
+      </div>
+    </div>
+    <div class="risk-row">
+      <span class="risk-level risk-high">Tinggi</span>
+      <div>
+        <div class="risk-title">Data tiket tidak akurat / kedaluwarsa</div>
+        <div class="risk-desc">Harga berubah mendadak, tempat wisata tutup tiba-tiba, jam operasional tidak update. Satu pengalaman buruk bisa viral negatif.</div>
+        <div class="risk-mitigate">→ Mitigasi: Local curator per kota yang verifikasi data mingguan, sistem pelaporan user, SMS otomatis ke vendor saat ada perubahan.</div>
+      </div>
+    </div>
+    <div class="risk-row">
+      <span class="risk-level risk-high">Tinggi</span>
+      <div>
+        <div class="risk-title">Traveloka/Tiket.com clone fitur itinerary</div>
+        <div class="risk-desc">Kompetitor besar bisa meniru fitur inti dalam 3–6 bulan dengan modal yang jauh lebih besar.</div>
+        <div class="risk-mitigate">→ Mitigasi: Bangun data moat secepat mungkin. Network effect dari vendor & user data yang besar adalah pertahanan terbaik.</div>
+      </div>
+    </div>
+    <div class="risk-row">
+      <span class="risk-level risk-med">Sedang</span>
+      <div>
+        <div class="risk-title">AI hallucinate destinasi wisata</div>
+        <div class="risk-desc">GPT merekomendasikan tempat yang tidak ada, sudah tutup, atau dengan info yang salah.</div>
+        <div class="risk-mitigate">→ Mitigasi: Semua output AI divalidasi terhadap database internal sebelum ditampilkan. Gunakan RAG (Retrieval-Augmented Generation) bukan pure generation.</div>
+      </div>
+    </div>
+    <div class="risk-row">
+      <span class="risk-level risk-med">Sedang</span>
+      <div>
+        <div class="risk-title">Biaya API AI membengkak</div>
+        <div class="risk-desc">Saat scale ke 50K+ MAU, biaya OpenAI API bisa mencapai puluhan juta rupiah per bulan.</div>
+        <div class="risk-mitigate">→ Mitigasi: Caching itinerary populer, rate limiting per user tier, mulai fine-tune open-source model di fase 3.</div>
+      </div>
+    </div>
+    <div class="risk-row">
+      <span class="risk-level risk-med">Sedang</span>
+      <div>
+        <div class="risk-title">Regulasi dan perizinan destinasi pemerintah</div>
+        <div class="risk-desc">Taman Nasional, Cagar Budaya, dan destinasi BUMN butuh izin formal yang prosesnya panjang.</div>
+        <div class="risk-mitigate">→ Mitigasi: Mulai dari destinasi swasta dan komunitas. Masuk destinasi pemerintah via program Kemenparekraf di fase 2.</div>
+      </div>
+    </div>
+    <div class="risk-row">
+      <span class="risk-level risk-low">Rendah</span>
+      <div>
+        <div class="risk-title">User churn setelah satu perjalanan</div>
+        <div class="risk-desc">User menggunakan Trabas untuk liburan ke Yogyakarta, lalu tidak kembali karena tidak ada perjalanan lagi.</div>
+        <div class="risk-mitigate">→ Mitigasi: Konten inspirasi perjalanan, push notif pre-long weekend, program loyalty poin, fitur "wishlist destinasi".</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== BIZ MODEL ===================== -->
+  <div id="sec-biz" class="section">
+    <div class="item-grid" style="margin-bottom:16px">
+      <div class="item-box">
+        <div class="item-label">Revenue stream per fase</div>
+        <ul class="item-list">
+          <li><strong>Fase 0–1:</strong> 0 (investasi)</li>
+          <li><strong>Fase 1:</strong> Komisi tiket + Premium sub</li>
+          <li><strong>Fase 2:</strong> + B2B deals + API license</li>
+          <li><strong>Fase 3:</strong> + SaaS vendor + data insights</li>
+          <li><strong>Fase 4:</strong> + regional + insurance komisi</li>
+        </ul>
+      </div>
+      <div class="item-box">
+        <div class="item-label">Unit economics target (fase 2)</div>
+        <ul class="item-list">
+          <li>CAC (Cost per User): &lt; Rp 15.000</li>
+          <li>LTV (lifetime value): &gt; Rp 150.000</li>
+          <li>LTV:CAC rasio: &gt; 10:1</li>
+          <li>Gross margin: &gt; 60%</li>
+          <li>Monthly churn: &lt; 8%</li>
+        </ul>
+      </div>
+    </div>
+    <div class="item-box" style="margin-bottom:12px">
+      <div class="item-label">Struktur biaya terbesar (yang harus diawasi)</div>
+      <ul class="item-list">
+        <li>Gaji tim teknologi (terbesar — jangan pelit di sini)</li>
+        <li>Biaya API AI (naik seiring scale, harus dimonitor ketat)</li>
+        <li>Customer support & vendor management</li>
+        <li>Marketing & influencer budget</li>
+        <li>Infrastructure cloud (AWS/GCP)</li>
+      </ul>
+    </div>
+    <div class="item-box">
+      <div class="item-label">Kebutuhan modal per fase (estimasi)</div>
+      <ul class="item-list">
+        <li>Fase 0 (bootstrapped): Rp 200–500 juta (founder + angel)</li>
+        <li>Fase 1 (pre-seed): Rp 1–3 miliar</li>
+        <li>Fase 2 (seed): Rp 5–15 miliar</li>
+        <li>Fase 3 (Series A): Rp 30–80 miliar</li>
+        <li>Fase 4 (Series B): USD 5–20 juta</li>
+      </ul>
+    </div>
+    <div class="warn-box" style="margin-top:12px">⚠ Default to revenue positivity ASAP. Jangan bakar uang untuk growth sebelum unit economics terbukti positif.</div>
+  </div>
+</div>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('visible'));
+  event.target.classList.add('active');
+  document.getElementById('sec-' + id).classList.add('visible');
+}
+function togglePhase(header) {
+  const card = header.closest('.phase-card');
+  card.classList.toggle('open');
+}
+</script>
