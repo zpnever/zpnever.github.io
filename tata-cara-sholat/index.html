@@ -1,0 +1,1912 @@
+<!DOCTYPE html>
+<html lang="id" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panduan Lengkap Tata Cara Sholat — Berdasarkan Dalil Shahih</title>
+  <meta name="description" content="Panduan lengkap tata cara sholat berdasarkan dalil-dalil shahih dari Al-Qur'an dan As-Sunnah. Dilengkapi gerakan, bacaan Arab, transliterasi, arti, dan dalil." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ═══════════════════════════════════════════
+       DESIGN SYSTEM — BLACK & WHITE CARTOONISH
+       ═══════════════════════════════════════════ */
+    :root {
+      --bg: #FAFAF8;
+      --bg-card: #FFFFFF;
+      --bg-card-alt: #F5F5F0;
+      --ink: #1A1A1A;
+      --ink-light: #555555;
+      --ink-lighter: #888888;
+      --border: #2A2A2A;
+      --border-light: #D0D0D0;
+      --border-dashed: #AAAAAA;
+      --accent: #1A1A1A;
+      --accent-soft: #E8E8E4;
+      --shadow-sm: 2px 2px 0 #1A1A1A;
+      --shadow-md: 4px 4px 0 #1A1A1A;
+      --shadow-lg: 6px 6px 0 #1A1A1A;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --font-body: 'Outfit', sans-serif;
+      --font-arab: 'Amiri', serif;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+    /* ═══════════════════════════════════════════
+       HEADER / HERO
+       ═══════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      overflow: hidden;
+    }
+
+    /* Hand-drawn doodle border pattern */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 20px;
+      border: 3px solid var(--border);
+      border-radius: var(--radius-xl);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 26px;
+      border: 1px dashed var(--border-dashed);
+      border-radius: var(--radius-lg);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--ink);
+      color: var(--bg);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+      animation: fadeSlideDown 0.8s ease-out both;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 900;
+      line-height: 1.15;
+      max-width: 700px;
+      letter-spacing: -1px;
+      animation: fadeSlideDown 0.8s 0.15s ease-out both;
+    }
+
+    .hero h1 .highlight {
+      position: relative;
+      display: inline-block;
+    }
+
+    .hero h1 .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: -4px;
+      right: -4px;
+      height: 12px;
+      background: var(--accent-soft);
+      z-index: -1;
+      border-radius: 2px;
+      transform: rotate(-1deg);
+    }
+
+    .hero-subtitle {
+      max-width: 520px;
+      font-size: 1rem;
+      color: var(--ink-light);
+      margin-top: 1.2rem;
+      font-weight: 400;
+      animation: fadeSlideDown 0.8s 0.3s ease-out both;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 2.2rem;
+      background: var(--ink);
+      color: var(--bg);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 14px 32px;
+      border: 2px solid var(--ink);
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      animation: fadeSlideDown 0.8s 0.45s ease-out both;
+    }
+
+    .hero-cta:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero-cta:active {
+      transform: translate(2px, 2px);
+      box-shadow: none;
+    }
+
+    .hero-cta svg {
+      width: 18px;
+      height: 18px;
+      transition: transform var(--transition);
+    }
+
+    .hero-cta:hover svg {
+      transform: translateY(3px);
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-lighter);
+      animation: bounce 2s infinite;
+    }
+
+    .hero-scroll-hint svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* ═══════════════════════════════════════════
+       TABLE OF CONTENTS (sticky sidebar nav)
+       ═══════════════════════════════════════════ */
+    .layout {
+      display: flex;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 2rem;
+      align-self: flex-start;
+      width: 260px;
+      min-width: 260px;
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+      padding: 1.5rem;
+      margin-right: 2rem;
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+    }
+
+    .sidebar-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink-lighter);
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px dashed var(--border-light);
+    }
+
+    .sidebar ol {
+      list-style: none;
+      counter-reset: toc;
+    }
+
+    .sidebar ol li {
+      counter-increment: toc;
+    }
+
+    .sidebar ol li a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      margin-bottom: 2px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--ink-light);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+
+    .sidebar ol li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--ink-lighter);
+      min-width: 22px;
+    }
+
+    .sidebar ol li a:hover,
+    .sidebar ol li a.active {
+      background: var(--accent-soft);
+      color: var(--ink);
+    }
+
+    .sidebar ol li a.active {
+      font-weight: 700;
+      border-left: 3px solid var(--ink);
+      padding-left: 7px;
+    }
+
+    .main-content {
+      flex: 1;
+      min-width: 0;
+      padding-bottom: 6rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       STEP CARD
+       ═══════════════════════════════════════════ */
+    .step {
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-md);
+      margin-bottom: 2.5rem;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .step.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 1.5rem 2rem;
+      border-bottom: 2px dashed var(--border-light);
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+
+    .step-header:hover {
+      background: var(--accent-soft);
+    }
+
+    .step-number {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      min-width: 48px;
+      background: var(--ink);
+      color: var(--bg);
+      font-size: 1.1rem;
+      font-weight: 800;
+      border-radius: 50%;
+      border: 3px solid var(--ink);
+      box-shadow: 2px 2px 0 var(--border-light);
+    }
+
+    .step-header h2 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      flex: 1;
+      line-height: 1.3;
+    }
+
+    .step-toggle {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--border);
+      border-radius: 50%;
+      background: transparent;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .step-toggle svg {
+      width: 16px;
+      height: 16px;
+      transition: transform var(--transition);
+    }
+
+    .step.open .step-toggle svg {
+      transform: rotate(180deg);
+    }
+
+    .step-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .step.open .step-body {
+      max-height: 15000px; /* large enough */
+    }
+
+    .step-content {
+      padding: 2rem;
+    }
+
+    /* ── Image Area ── */
+    .step-image {
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem;
+      background: var(--bg-card-alt);
+      border-bottom: 2px dashed var(--border-light);
+    }
+
+    .step-image img {
+      width: 100%;
+      max-width: 380px;
+      height: auto;
+      border-radius: var(--radius-md);
+      border: 2px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition);
+    }
+
+    .step-image img:hover {
+      transform: scale(1.02) rotate(-1deg);
+    }
+
+    /* ── Section labels ── */
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--ink-lighter);
+      margin-bottom: 0.8rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 2px solid var(--accent-soft);
+    }
+
+    .section-label svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .subsection {
+      margin-bottom: 2rem;
+    }
+
+    .subsection-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .subsection-title .letter-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      background: var(--ink);
+      color: var(--bg);
+      border-radius: 6px;
+    }
+
+    .content-text {
+      font-size: 0.92rem;
+      color: var(--ink-light);
+      margin-bottom: 0.8rem;
+      line-height: 1.8;
+    }
+
+    /* ── Arabic text box ── */
+    .arabic-box {
+      background: var(--bg-card-alt);
+      border: 2px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin: 1rem 0;
+      text-align: center;
+      position: relative;
+    }
+
+    .arabic-box::before {
+      content: '﴿';
+      position: absolute;
+      top: 8px;
+      right: 16px;
+      font-size: 1.8rem;
+      color: var(--border-light);
+      font-family: var(--font-arab);
+    }
+
+    .arabic-box::after {
+      content: '﴾';
+      position: absolute;
+      bottom: 8px;
+      left: 16px;
+      font-size: 1.8rem;
+      color: var(--border-light);
+      font-family: var(--font-arab);
+    }
+
+    .arabic-text {
+      font-family: var(--font-arab);
+      font-size: 1.65rem;
+      line-height: 2.2;
+      direction: rtl;
+      color: var(--ink);
+      margin-bottom: 0.8rem;
+      font-weight: 400;
+    }
+
+    .transliteration {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: var(--ink-light);
+      margin-bottom: 0.3rem;
+    }
+
+    .meaning {
+      font-size: 0.85rem;
+      color: var(--ink-lighter);
+    }
+
+    .meaning::before { content: '"'; }
+    .meaning::after { content: '"'; }
+
+    /* ── Dalil / Evidence box ── */
+    .dalil-box {
+      background: var(--bg);
+      border: 2px solid var(--border-light);
+      border-left: 4px solid var(--ink);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 1rem 1.2rem;
+      margin: 1rem 0;
+      font-size: 0.82rem;
+      color: var(--ink-light);
+      line-height: 1.8;
+    }
+
+    .dalil-box strong {
+      display: block;
+      font-size: 0.72rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--ink);
+      margin-bottom: 0.3rem;
+    }
+
+    /* ── Option tabs / pills ── */
+    .options-container {
+      margin: 1rem 0;
+    }
+
+    .options-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 1rem;
+    }
+
+    .option-tab {
+      padding: 6px 16px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-family: var(--font-body);
+      border: 2px solid var(--border);
+      border-radius: 50px;
+      background: transparent;
+      color: var(--ink);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .option-tab:hover {
+      background: var(--accent-soft);
+    }
+
+    .option-tab.active {
+      background: var(--ink);
+      color: var(--bg);
+    }
+
+    .option-panel {
+      display: none;
+    }
+
+    .option-panel.active {
+      display: block;
+      animation: fadeIn 0.35s ease-out;
+    }
+
+    /* ── Separator ── */
+    .sep {
+      height: 2px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--border-light) 0px,
+        var(--border-light) 6px,
+        transparent 6px,
+        transparent 12px
+      );
+      margin: 2rem 0;
+    }
+
+    /* ═══════════════════════════════════════════
+       THUMA'NINAH BANNER
+       ═══════════════════════════════════════════ */
+    .important-banner {
+      background: var(--ink);
+      color: var(--bg);
+      border: 2px solid var(--ink);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .important-banner::before {
+      content: '⚠';
+      position: absolute;
+      top: -20px;
+      right: -10px;
+      font-size: 8rem;
+      opacity: 0.06;
+    }
+
+    .important-banner h3 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .important-banner p {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      opacity: 0.85;
+    }
+
+    /* ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ */
+    .footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 2px solid var(--border-light);
+      font-size: 0.8rem;
+      color: var(--ink-lighter);
+    }
+
+    .footer-bismillah {
+      font-family: var(--font-arab);
+      font-size: 1.6rem;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ═══════════════════════════════════════════
+       BACK TO TOP
+       ═══════════════════════════════════════════ */
+    .back-to-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--ink);
+      color: var(--bg);
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(20px);
+      transition: var(--transition);
+      z-index: 100;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .back-to-top svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* ═══════════════════════════════════════════
+       PROGRESS BAR
+       ═══════════════════════════════════════════ */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: var(--ink);
+      z-index: 1000;
+      transition: width 0.1s linear;
+    }
+
+    /* ═══════════════════════════════════════════
+       ANIMATIONS
+       ═══════════════════════════════════════════ */
+    @keyframes fadeSlideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .layout { padding: 0 1rem; }
+      .step-content { padding: 1.2rem; }
+      .step-header { padding: 1.2rem; }
+      .step-header h2 { font-size: 1.1rem; }
+      .arabic-text { font-size: 1.35rem; }
+    }
+
+    /* Mobile nav toggle */
+    .mobile-nav-toggle {
+      display: none;
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      width: 48px;
+      height: 48px;
+      align-items: center;
+      justify-content: center;
+      background: var(--ink);
+      color: var(--bg);
+      border: 2px solid var(--ink);
+      border-radius: 50%;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      z-index: 200;
+    }
+
+    .mobile-nav-toggle svg { width: 20px; height: 20px; }
+
+    @media (max-width: 900px) {
+      .mobile-nav-toggle { display: flex; }
+    }
+
+    .mobile-sidebar-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 998;
+    }
+
+    .mobile-sidebar-overlay.open { display: block; }
+
+    .mobile-sidebar {
+      position: fixed;
+      left: -320px;
+      top: 0;
+      bottom: 0;
+      width: 300px;
+      background: var(--bg-card);
+      border-right: 2px solid var(--border);
+      padding: 2rem 1.5rem;
+      overflow-y: auto;
+      z-index: 999;
+      transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .mobile-sidebar.open { left: 0; }
+
+    .mobile-sidebar .sidebar-title {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink-lighter);
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px dashed var(--border-light);
+    }
+
+    .mobile-sidebar ol {
+      list-style: none;
+      counter-reset: toc;
+    }
+
+    .mobile-sidebar ol li { counter-increment: toc; }
+
+    .mobile-sidebar ol li a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 10px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--ink-light);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+
+    .mobile-sidebar ol li a::before {
+      content: counter(toc, decimal-leading-zero);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--ink-lighter);
+      min-width: 22px;
+    }
+
+    .mobile-sidebar ol li a:hover,
+    .mobile-sidebar ol li a.active {
+      background: var(--accent-soft);
+      color: var(--ink);
+    }
+
+    /* ═══════════════════════════════════════════
+       EXPAND ALL / COLLAPSE ALL BUTTON
+       ═══════════════════════════════════════════ */
+    .control-bar {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-bottom: 1.5rem;
+    }
+
+    .ctrl-btn {
+      padding: 8px 18px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      font-family: var(--font-body);
+      border: 2px solid var(--border);
+      border-radius: 50px;
+      background: var(--bg-card);
+      color: var(--ink);
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .ctrl-btn:hover {
+      background: var(--ink);
+      color: var(--bg);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Progress Bar -->
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section class="hero" id="hero">
+    <span class="hero-badge">Berdasarkan Dalil Shahih</span>
+    <h1>Panduan Lengkap<br/><span class="highlight">Tata Cara Sholat</span></h1>
+    <p class="hero-subtitle">Disusun secara sistematis dan detail berdasarkan dalil-dalil dari Al-Qur'an dan As-Sunnah yang shahih, dilengkapi gerakan, bacaan, dan variasinya.</p>
+    <a href="#step-1" class="hero-cta" id="heroCta">
+      Mulai Belajar
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+    </a>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ MAIN LAYOUT ═══════════════════ -->
+  <div class="layout" id="mainLayout">
+
+    <!-- Sidebar Navigation (Desktop) -->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar-title">Daftar Isi</div>
+      <ol id="tocList">
+        <li><a href="#step-1">Menghadap Kiblat & Niat</a></li>
+        <li><a href="#step-2">Takbiratul Ihram</a></li>
+        <li><a href="#step-3">Bersedekap & Doa Istiftah</a></li>
+        <li><a href="#step-4">Ta'awudz & Al-Fatihah</a></li>
+        <li><a href="#step-5">Membaca Surah</a></li>
+        <li><a href="#step-6">Rukuk</a></li>
+        <li><a href="#step-7">I'tidal</a></li>
+        <li><a href="#step-8">Sujud</a></li>
+        <li><a href="#step-9">Duduk Antara Dua Sujud</a></li>
+        <li><a href="#step-10">Sujud Kedua</a></li>
+        <li><a href="#step-11">Duduk Istirahat & Berdiri</a></li>
+        <li><a href="#step-12">Tasyahud Awal</a></li>
+        <li><a href="#step-13">Tasyahud Akhir</a></li>
+        <li><a href="#step-14">Salam</a></li>
+      </ol>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+
+      <!-- Control Bar -->
+      <div class="control-bar">
+        <button class="ctrl-btn" id="expandAll" onclick="toggleAll(true)">Buka Semua ↓</button>
+        <button class="ctrl-btn" id="collapseAll" onclick="toggleAll(false)">Tutup Semua ↑</button>
+      </div>
+
+      <!-- ═══════ STEP 1 ═══════ -->
+      <article class="step" id="step-1">
+        <div class="step-header" onclick="toggleStep(this)">
+          <div class="step-number">1</div>
+          <h2>Menghadap Kiblat & Niat</h2>
+          <button class="step-toggle" aria-label="Toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        </div>
+        <div class="step-body">
+          <div class="step-image">
+            <img src="assets/menghadap_kiblat.png" alt="Menghadap Kiblat" loading="lazy" />
+          </div>
+          <div class="step-content">
+            <!-- A. Gerakan -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-5"/></svg>
+                Gerakan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">A</span> Menghadap Kiblat</div>
+              <p class="content-text">Berdiri tegak menghadap ke arah Ka'bah (Kiblat) bagi yang mampu.</p>
+              <div class="dalil-box">
+                <strong>📖 Dalil — QS. Al-Baqarah: 144</strong>
+                "...Maka hadapkanlah wajahmu ke arah Masjidil Haram..."
+              </div>
+              <div class="dalil-box">
+                <strong>📖 Dalil — HR. Bukhari no. 6251 & Muslim no. 397</strong>
+                Rasulullah ﷺ bersabda: "Jika kamu hendak shalat, maka sempurnakanlah wudhu, kemudian menghadaplah ke kiblat, lalu bertakbirlah..."
+              </div>
+            </div>
+
+            <div class="sep"></div>
+
+            <!-- B. Niat -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+                Keadaan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">B</span> Niat</div>
+              <p class="content-text">Niat adalah amalan hati (bertekad untuk melaksanakan sholat tertentu, misal: Sholat Zhuhur) dan <strong>tidak dilafadzkan</strong> (tidak ada dalil shahih yang menyatakan Rasulullah ﷺ melafadzkannya).</p>
+              <div class="dalil-box">
+                <strong>📖 Dalil — HR. Bukhari no. 1 & Muslim no. 1907</strong>
+                Rasulullah ﷺ bersabda: "Sesungguhnya setiap amalan itu bergantung pada niatnya..."
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══════ STEP 2 ═══════ -->
+      <article class="step" id="step-2">
+        <div class="step-header" onclick="toggleStep(this)">
+          <div class="step-number">2</div>
+          <h2>Takbiratul Ihram</h2>
+          <button class="step-toggle" aria-label="Toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        </div>
+        <div class="step-body">
+          <div class="step-image">
+            <img src="assets/takbiratul_ihram.png" alt="Takbiratul Ihram" loading="lazy" />
+          </div>
+          <div class="step-content">
+            <!-- A. Gerakan -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-5"/></svg>
+                Gerakan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">A</span> Mengangkat Kedua Tangan</div>
+              <p class="content-text">Mengangkat kedua tangan sejajar dengan pundak atau sejajar dengan daun telinga dengan jari-jari direnggangkan sedikit dan dihadapkan ke kiblat.</p>
+              <div class="dalil-box">
+                <strong>📖 Dalil 1 — Sejajar Pundak (HR. Bukhari no. 735 & Muslim no. 390)</strong>
+                Dari Abdullah bin Umar رضي الله عنه: "Aku melihat Rasulullah ﷺ ketika berdiri shalat mengangkat kedua tangannya hingga sejajar dengan kedua pundaknya, hal itu beliau lakukan ketika bertakbir..."
+              </div>
+              <div class="dalil-box">
+                <strong>📖 Dalil 2 — Sejajar Daun Telinga (HR. Muslim no. 391)</strong>
+                Dari Malik bin Al-Huwairits رضي الله عنه: "Rasulullah ﷺ ketika bertakbir mengangkat kedua tangannya hingga sejajar dengan bagian atas kedua telinganya."
+              </div>
+            </div>
+
+            <div class="sep"></div>
+
+            <!-- B. Bacaan -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                Bacaan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">B</span> Bacaan Takbiratul Ihram</div>
+              <div class="arabic-box">
+                <div class="arabic-text">اللهُ أَكْبَرُ</div>
+                <div class="transliteration">Allāhu Akbar</div>
+                <div class="meaning">Allah Maha Besar.</div>
+              </div>
+              <div class="dalil-box">
+                <strong>📖 Dalil — HR. Abu Dawud no. 618, At-Tirmidzi no. 3</strong>
+                "Kunci shalat adalah bersuci, pengharamannya (dari hal di luar shalat) adalah takbir, dan penghalalannya adalah salam."
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══════ STEP 3 ═══════ -->
+      <article class="step" id="step-3">
+        <div class="step-header" onclick="toggleStep(this)">
+          <div class="step-number">3</div>
+          <h2>Bersedekap & Doa Istiftah</h2>
+          <button class="step-toggle" aria-label="Toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        </div>
+        <div class="step-body">
+          <div class="step-content">
+            <!-- A. Gerakan -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-5"/></svg>
+                Gerakan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">A</span> Meletakkan Tangan di Atas Dada</div>
+              <p class="content-text">Meletakkan telapak tangan kanan di atas punggung telapak tangan kiri, pergelangan, atau lengan bawah, lalu diletakkan di atas dada.</p>
+              <div class="dalil-box">
+                <strong>📖 Dalil 1 — HR. Bukhari no. 740</strong>
+                Dari Sahl bin Sa'ad رضي الله عنه: "Orang-orang diperintahkan agar meletakkan tangan kanan di atas lengan kiri mereka dalam shalat."
+              </div>
+              <div class="dalil-box">
+                <strong>📖 Dalil 2 — HR. Ibnu Khuzaimah no. 479</strong>
+                Dari Wa'il bin Hujr رضي الله عنه: "Aku shalat bersama Rasulullah ﷺ, beliau meletakkan tangan kanannya di atas tangan kirinya di atas dadanya."
+              </div>
+            </div>
+
+            <div class="sep"></div>
+
+            <!-- B. Doa Istiftah -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                Bacaan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">B</span> Doa Istiftah (Iftitah)</div>
+              <p class="content-text">Ada beberapa macam doa Istiftah yang diajarkan oleh Rasulullah ﷺ. Anda dapat memilih salah satu:</p>
+
+              <div class="options-container" id="istiftahOptions">
+                <div class="options-tabs">
+                  <button class="option-tab active" onclick="switchOption('istiftahOptions', 0, this)">Opsi 1 — Abu Hurairah</button>
+                  <button class="option-tab" onclick="switchOption('istiftahOptions', 1, this)">Opsi 2 — Ali bin Abi Thalib</button>
+                  <button class="option-tab" onclick="switchOption('istiftahOptions', 2, this)">Opsi 3 — Umar bin Al-Khattab</button>
+                </div>
+
+                <!-- Opsi 1 -->
+                <div class="option-panel active">
+                  <p class="content-text" style="font-size:0.8rem;color:var(--ink-lighter);">Paling sering digunakan dalam sholat fardhu.</p>
+                  <div class="arabic-box">
+                    <div class="arabic-text">اللَّهُمَّ بَاعِدْ بَيْنِي وَبَيْنِ خَطَايَايَ كَمَا بَاعَدْتَ بَيْنَ الْمَشْرِقِ وَالْمَغْرِبِ، اللَّهُمَّ نَقِّنِي مِنَ الْخَطَايَا كَمَا يُنَقَّى الثَّوْبُ الأَبْيَضُ مِنَ الدَّنَسِ، اللَّهُمَّ اغْسِلْ خَطَايَايَ بِالْمَاءِ وَالثَّلْجِ وَالْبَرَدِ</div>
+                    <div class="transliteration">Allāhumma bā'id bainī wa baina khaṭāyāya kamā bā'adta bainal-masyriqi wal-magrib. Allāhumma naqqinī minal-khaṭāyā kamā yunaqqas̱-s̱aubul-abyaḍu minad-danas. Allāhumma-gsil khaṭāyāya bil-mā'i wa s̱-s̱alji wal-barad.</div>
+                    <div class="meaning">Ya Allah, jauhkanlah antara aku dan kesalahan-kesalahanku, sebagaimana Engkau menjauhkan antara timur dan barat. Ya Allah, bersihkanlah aku dari kesalahan-kesalahanku sebagaimana baju putih dibersihkan dari kotoran. Ya Allah, cucilah kesalahan-kesalahanku dengan air, salju dan es/air embun.</div>
+                  </div>
+                  <div class="dalil-box">
+                    <strong>📖 Dalil — HR. Bukhari no. 744 & Muslim no. 598</strong>
+                  </div>
+                </div>
+
+                <!-- Opsi 2 -->
+                <div class="option-panel">
+                  <p class="content-text" style="font-size:0.8rem;color:var(--ink-lighter);">Sering dibaca saat sholat malam, namun sah untuk sholat fardhu.</p>
+                  <div class="arabic-box">
+                    <div class="arabic-text">وَجَّهْتُ وَجْهِيَ لِلَّذِي فَطَرَ السَّمَاوَاتِ وَالأَرْضَ حَنِيفًا وَمَا أَنَا مِنَ الْمُشْرِكِينَ، إِنَّ صَلاَتِي وَنُسُكِي وَمَحْيَايَ وَمَمَاتِي لِلَّهِ رَبِّ الْعَالَمِينَ، لاَ شَرِيكَ لَهُ وَبِذَلِكَ أُمِرْتُ وَأَنَا مِنَ الْمُسْلِمِينَ. اللَّهُمَّ أَنْتَ الْمَلِكُ لاَ إِلَهَ إِلاَّ أَنْتَ، أَنْتَ رَبِّي وَأَنَا عَبْدُكَ...</div>
+                    <div class="transliteration">Wajjahtu wajhiya lilladzī faṭaras-samāwāti wal-arḍa ḥanīfaw-wa mā ana minal-musyrikīn. Inna ṣalātī wa nusukī wa maḥyāya wa mamātī lillāhi Rabbil-'ālamīn. Lā syarīka lahū wa bidzālika umirtu wa ana minal-muslimīn...</div>
+                    <div class="meaning">Aku hadapkan wajahku kepada Allah yang telah menciptakan langit dan bumi dengan penuh kepatuhan, dan aku bukanlah termasuk orang-orang musyrik. Sesungguhnya shalatku, ibadahku, hidupku dan matiku hanya untuk Allah, Rabb semesta alam...</div>
+                  </div>
+                  <div class="dalil-box">
+                    <strong>📖 Dalil — HR. Muslim no. 771</strong>
+                  </div>
+                </div>
+
+                <!-- Opsi 3 -->
+                <div class="option-panel">
+                  <p class="content-text" style="font-size:0.8rem;color:var(--ink-lighter);">Sangat ringkas dan agung artinya.</p>
+                  <div class="arabic-box">
+                    <div class="arabic-text">سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، وَتَبَارَكَ اسْمُكَ، وَتَعَالَى جَدُّكَ، وَلاَ إِلَهَ غَيْرُكَ</div>
+                    <div class="transliteration">Subḥānakallāhumma wa biḥamdika, wa tabārakasmuka, wa ta'ālā jadduka, wa lā ilāha gairuka.</div>
+                    <div class="meaning">Maha Suci Engkau ya Allah, aku memuji-Mu. Maha Berkah nama-Mu, Maha Tinggi keagungan-Mu, dan tidak ada ilah yang berhak disembah selain Engkau.</div>
+                  </div>
+                  <div class="dalil-box">
+                    <strong>📖 Dalil — HR. Muslim no. 399 (mauquf dari Umar)</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══════ STEP 4 ═══════ -->
+      <article class="step" id="step-4">
+        <div class="step-header" onclick="toggleStep(this)">
+          <div class="step-number">4</div>
+          <h2>Ta'awudz & Al-Fatihah</h2>
+          <button class="step-toggle" aria-label="Toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        </div>
+        <div class="step-body">
+          <div class="step-content">
+            <!-- A. Ta'awudz -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                Bacaan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">A</span> Membaca Ta'awudz</div>
+              <p class="content-text">Membaca ta'awudz secara lirih (sirr) sebelum Al-Fatihah.</p>
+
+              <div class="options-container" id="taawudzOptions">
+                <div class="options-tabs">
+                  <button class="option-tab active" onclick="switchOption('taawudzOptions', 0, this)">Opsi 1 — Ringkas</button>
+                  <button class="option-tab" onclick="switchOption('taawudzOptions', 1, this)">Opsi 2 — Lengkap</button>
+                </div>
+                <div class="option-panel active">
+                  <div class="arabic-box">
+                    <div class="arabic-text">أَعُوذُ بِاللَّهِ مِنَ الشَّيْطَانِ الرَّجِيمِ</div>
+                    <div class="transliteration">A'ūdzu billāhi minasy-syaiṭānir-rajīm.</div>
+                    <div class="meaning">Aku berlindung kepada Allah dari godaan setan yang terkutuk.</div>
+                  </div>
+                  <div class="dalil-box"><strong>📖 Dalil — QS. An-Nahl: 98</strong></div>
+                </div>
+                <div class="option-panel">
+                  <div class="arabic-box">
+                    <div class="arabic-text">أَعُوذُ بِاللَّهِ السَّمِيعِ الْعَلِيمِ مِنَ الشَّيْطَانِ الرَّجِيمِ مِنْ هَمْزِهِ وَنَفْخِهِ وَنَفْثِهِ</div>
+                    <div class="transliteration">A'ūdzu billāhis-samī'il-'alīmi minasy-syaiṭānir-rajīmi min hamzihī wa naf-khihī wa naf-s̱ih.</div>
+                    <div class="meaning">Aku berlindung kepada Allah Yang Maha Mendengar lagi Maha Mengetahui dari gangguan setan yang terkutuk, yaitu dari kegilaannya, kesombongannya, dan hembusan syairnya yang sesat.</div>
+                  </div>
+                  <div class="dalil-box"><strong>📖 Dalil — HR. Abu Dawud no. 775, At-Tirmidzi no. 242</strong></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="sep"></div>
+
+            <!-- B. Al-Fatihah -->
+            <div class="subsection">
+              <div class="subsection-title"><span class="letter-badge">B</span> Al-Fatihah (Wajib)</div>
+              <p class="content-text">Membaca Surat Al-Fatihah ayat demi ayat (berhenti di setiap akhir ayat).</p>
+              <div class="arabic-box">
+                <div class="arabic-text">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ ۝ اَلْحَمْدُ لِلّٰهِ رَبِّ الْعٰلَمِيْنَ ۝ الرَّحْمٰنِ الرَّحِيْمِ ۝ مٰلِكِ يَوْمِ الدِّيْنِ ۝ اِيَّاكَ نَعْبُدُ وَاِيَّاكَ نَسْتَعِيْنُ ۝ اِهْدِنَا الصِّرَاطَ الْمُسْتَقِيْمَ ۝ صِرَاطَ الَّذِيْنَ اَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوْبِ عَلَيْهِمْ وَلَا الضَّۤالِّيْنَ ۝</div>
+              </div>
+              <div class="dalil-box">
+                <strong>📖 Dalil Kewajiban — HR. Bukhari no. 756 & Muslim no. 394</strong>
+                Rasulullah ﷺ bersabda: "Tidak sah shalat bagi orang yang tidak membaca Fatihatul Kitab (Surat Al-Fatihah)."
+              </div>
+            </div>
+
+            <div class="sep"></div>
+
+            <!-- C. Aamiin -->
+            <div class="subsection">
+              <div class="subsection-title"><span class="letter-badge">C</span> Mengucapkan "Aamiin"</div>
+              <p class="content-text">Setelah selesai membaca Al-Fatihah, disunnahkan membaca "Aamiin" dengan suara keras (jahr) pada sholat jahriyah atau lirih pada sholat sirriyah.</p>
+              <div class="arabic-box">
+                <div class="arabic-text">آمِيْن</div>
+                <div class="transliteration">Āmīn</div>
+                <div class="meaning">Kabulkanlah doa kami.</div>
+              </div>
+              <div class="dalil-box">
+                <strong>📖 Dalil — HR. Bukhari no. 782 & Muslim no. 410</strong>
+                "Jika imam mengucapkan 'Gairil magḍūbi 'alaihim walad-ḍāllīn', maka ucapkanlah 'Aamiin'. Karena barangsiapa yang ucapan aminnya bersamaan dengan ucapan amin para malaikat, maka dosa-dosanya yang telah lalu akan diampuni."
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══════ STEP 5 ═══════ -->
+      <article class="step" id="step-5">
+        <div class="step-header" onclick="toggleStep(this)">
+          <div class="step-number">5</div>
+          <h2>Membaca Surah Al-Qur'an</h2>
+          <button class="step-toggle" aria-label="Toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        </div>
+        <div class="step-body">
+          <div class="step-content">
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                Bacaan
+              </div>
+              <p class="content-text">Disunnahkan membaca satu surat penuh atau beberapa ayat dari Al-Qur'an pada dua rakaat pertama (Sholat Shubuh, Zhuhur, Ashar, Maghrib, Isya).</p>
+              <div class="dalil-box">
+                <strong>📖 Dalil — HR. Bukhari no. 759 & Muslim no. 451</strong>
+                Dari Abu Qatadah رضي الله عنه: "Nabi ﷺ membaca Al-Fatihah dan surat lain pada dua rakaat pertama dalam shalat Zhuhur dan Ashar..."
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══════ STEP 6 ═══════ -->
+      <article class="step" id="step-6">
+        <div class="step-header" onclick="toggleStep(this)">
+          <div class="step-number">6</div>
+          <h2>Rukuk</h2>
+          <button class="step-toggle" aria-label="Toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        </div>
+        <div class="step-body">
+          <div class="step-image">
+            <img src="assets/rukuk.png" alt="Rukuk" loading="lazy" />
+          </div>
+          <div class="step-content">
+            <!-- A. Gerakan -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-5"/></svg>
+                Gerakan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">A</span> Mengangkat Tangan, Takbir, dan Membungkuk</div>
+              <p class="content-text">Mengangkat kedua tangan sejajar pundak/telinga sembari bertakbir ("Allahu Akbar"). Membungkukkan badan hingga punggung lurus mendatar. Kedua telapak tangan memegang lutut dengan jari-jari direnggangkan (seperti mencengkeram). Siku direnggangkan dari lambung dan pandangan lurus ke arah tempat sujud.</p>
+              <div class="dalil-box">
+                <strong>📖 Dalil — HR. Bukhari no. 735 & Muslim no. 390</strong>
+                Dari Abdullah bin Umar رضي الله عنه: "...dan beliau mengangkat kedua tangannya ketika bertakbir untuk rukuk..."
+              </div>
+              <div class="dalil-box">
+                <strong>📖 Dalil — HR. Bukhari no. 828, Abu Dawud no. 730</strong>
+                Dari Abu Humaid As-Sa'idi رضي الله عنه: "Apabila beliau rukuk, beliau meletakkan kedua tangannya pada lututnya seakan-akan mencengkeramnya, dan beliau meratakan punggungnya serta tidak mendongakkan kepalanya dan tidak pula terlalu menundukkannya."
+              </div>
+            </div>
+
+            <div class="sep"></div>
+
+            <!-- B. Bacaan -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                Bacaan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">B</span> Bacaan Rukuk</div>
+
+              <div class="options-container" id="rukukOptions">
+                <div class="options-tabs">
+                  <button class="option-tab active" onclick="switchOption('rukukOptions', 0, this)">Opsi 1</button>
+                  <button class="option-tab" onclick="switchOption('rukukOptions', 1, this)">Opsi 2</button>
+                  <button class="option-tab" onclick="switchOption('rukukOptions', 2, this)">Opsi 3</button>
+                  <button class="option-tab" onclick="switchOption('rukukOptions', 3, this)">Opsi 4</button>
+                </div>
+                <div class="option-panel active">
+                  <p class="content-text" style="font-size:0.8rem;color:var(--ink-lighter);">Paling populer — dibaca 3 kali.</p>
+                  <div class="arabic-box">
+                    <div class="arabic-text">سُبْحَانَ رَبِّيَ الْعَظِيمِ</div>
+                    <div class="transliteration">Subḥāna Rabbiyal-'Aẓīm (3×)</div>
+                    <div class="meaning">Maha Suci Rabbku Yang Maha Agung.</div>
+                  </div>
+                  <div class="dalil-box"><strong>📖 Dalil — HR. Muslim no. 772, Abu Dawud no. 871</strong></div>
+                </div>
+                <div class="option-panel">
+                  <div class="arabic-box">
+                    <div class="arabic-text">سُبْحَانَ رَبِّيَ الْعَظِيمِ وَبِحَمْدِهِ</div>
+                    <div class="transliteration">Subḥāna Rabbiyal-'Aẓīmi wa biḥamdih (3×)</div>
+                    <div class="meaning">Maha Suci Rabbku Yang Maha Agung dan dengan memuji-Nya.</div>
+                  </div>
+                  <div class="dalil-box"><strong>📖 Dalil — HR. Abu Dawud no. 870</strong></div>
+                </div>
+                <div class="option-panel">
+                  <div class="arabic-box">
+                    <div class="arabic-text">سُبْحَانَكَ اللَّهُمَّ رَبَّنَا وَبِحَمْدِكَ اللَّهُمَّ اغْفِرْ لِي</div>
+                    <div class="transliteration">Subḥānakallāhumma Rabbanā wa biḥamdika Allāhummagfir lī.</div>
+                    <div class="meaning">Maha Suci Engkau ya Allah, Rabb kami, dan dengan memuji-Mu. Ya Allah ampunilah aku.</div>
+                  </div>
+                  <div class="dalil-box"><strong>📖 Dalil — HR. Bukhari no. 794 & Muslim no. 484</strong></div>
+                </div>
+                <div class="option-panel">
+                  <div class="arabic-box">
+                    <div class="arabic-text">سُبُّوحٌ قُدُّوسٌ رَبُّ الْمَلَائِكَةِ وَالرُّوحِ</div>
+                    <div class="transliteration">Subbūḥun Quddūsun Rabbul-malā'ikati war-rūḥ.</div>
+                    <div class="meaning">Maha Suci (dari segala kekurangan), Maha Qudus, Rabb para malaikat dan Jibril.</div>
+                  </div>
+                  <div class="dalil-box"><strong>📖 Dalil — HR. Muslim no. 487</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══════ STEP 7 ═══════ -->
+      <article class="step" id="step-7">
+        <div class="step-header" onclick="toggleStep(this)">
+          <div class="step-number">7</div>
+          <h2>I'tidal (Bangkit dari Rukuk)</h2>
+          <button class="step-toggle" aria-label="Toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        </div>
+        <div class="step-body">
+          <div class="step-image">
+            <img src="assets/itidal.png" alt="I'tidal" loading="lazy" />
+          </div>
+          <div class="step-content">
+            <!-- A. Gerakan -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-5"/></svg>
+                Gerakan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">A</span> Bangkit dan Mengangkat Tangan</div>
+              <p class="content-text">Bangkit dari rukuk hingga tubuh berdiri tegak lurus (Thuma'ninah), sambil mengangkat kedua tangan sejajar pundak/telinga saat mengucapkan tasmi'. Setelah tegak berdiri, tangan diluruskan di samping badan.</p>
+              <div class="dalil-box">
+                <strong>📖 Dalil — HR. Bukhari no. 735 & Muslim no. 390</strong>
+                Dari Abdullah bin Umar رضي الله عنه: "Aku melihat Nabi ﷺ mengangkat kedua tangannya setinggi pundak ketika memulai shalat, ketika bertakbir untuk rukuk, dan ketika mengucapkan 'Sami'allahu liman hamidah'..."
+              </div>
+            </div>
+
+            <div class="sep"></div>
+
+            <!-- B. Bacaan -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                Bacaan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">B</span> Bacaan I'tidal</div>
+
+              <p class="content-text"><strong>1. Tasmi' (saat bangkit):</strong></p>
+              <div class="arabic-box">
+                <div class="arabic-text">سَمِعَ اللَّهُ لِمَنْ حَمِدَهُ</div>
+                <div class="transliteration">Sami'allāhu liman ḥamidah.</div>
+                <div class="meaning">Allah mendengar orang yang memuji-Nya.</div>
+              </div>
+
+              <p class="content-text" style="margin-top:1.2rem;"><strong>2. Tahmid (setelah berdiri tegak):</strong></p>
+
+              <div class="options-container" id="tahmidOptions">
+                <div class="options-tabs">
+                  <button class="option-tab active" onclick="switchOption('tahmidOptions', 0, this)">Opsi A — Sederhana</button>
+                  <button class="option-tab" onclick="switchOption('tahmidOptions', 1, this)">Opsi B — Tambahan</button>
+                  <button class="option-tab" onclick="switchOption('tahmidOptions', 2, this)">Opsi C — Lengkap</button>
+                </div>
+                <div class="option-panel active">
+                  <div class="arabic-box">
+                    <div class="arabic-text">رَبَّنَا وَلَكَ الْحَمْدُ</div>
+                    <div class="transliteration">Rabbanā wa lakal-ḥamd.</div>
+                    <div class="meaning">Wahai Rabb kami, bagi-Mu-lah segala pujian.</div>
+                  </div>
+                  <div class="dalil-box"><strong>📖 Dalil — HR. Bukhari no. 796</strong></div>
+                </div>
+                <div class="option-panel">
+                  <div class="arabic-box">
+                    <div class="arabic-text">رَبَّنَا لَكَ الْحَمْدُ حَمْدًا كَثِيرًا طَيِّبًا مُبَارَكًا فِيهِ</div>
+                    <div class="transliteration">Rabbanā lakal-ḥamdu ḥamdan kas̱īran ṭayyiban mubārakan fīh.</div>
+                    <div class="meaning">Wahai Rabb kami, bagi-Mu pujian yang banyak, baik, lagi berkah di dalamnya.</div>
+                  </div>
+                  <div class="dalil-box"><strong>📖 Dalil — HR. Bukhari no. 799</strong> (Nabi ﷺ sangat takjub mendengar sahabat membaca ini karena puluhan malaikat berebut mencatatnya).</div>
+                </div>
+                <div class="option-panel">
+                  <div class="arabic-box">
+                    <div class="arabic-text">اللَّهُمَّ رَبَّنَا لَكَ الْحَمْدُ مِلْءَ السَّمَاوَاتِ وَمِلْءَ الأَرْضِ وَمِلْءَ مَا بَيْنَهُمَا وَمِلْءَ مَا شِئْتَ مِنْ شَيْءٍ بَعْدُ</div>
+                    <div class="transliteration">Allāhumma Rabbanā lakal-ḥamdu mil'as-samāwāti wa mil'al-arḍi wa mil'a mā bainahumā wa mil'a mā syi'ta min syai'in ba'du.</div>
+                    <div class="meaning">Ya Allah, Rabb kami, bagi-Mu segala puji sebanyak langit dan bumi, sebanyak apa yang ada di antara keduanya, dan sebanyak apa pun yang Engkau kehendaki selain itu.</div>
+                  </div>
+                  <div class="dalil-box"><strong>📖 Dalil — HR. Muslim no. 476</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══════ STEP 8 ═══════ -->
+      <article class="step" id="step-8">
+        <div class="step-header" onclick="toggleStep(this)">
+          <div class="step-number">8</div>
+          <h2>Sujud</h2>
+          <button class="step-toggle" aria-label="Toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        </div>
+        <div class="step-body">
+          <div class="step-image">
+            <img src="assets/sujud.png" alt="Sujud" loading="lazy" />
+          </div>
+          <div class="step-content">
+            <!-- A. Gerakan -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-5"/></svg>
+                Gerakan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">A</span> Turun ke Sujud — 7 Anggota Badan</div>
+              <p class="content-text">Turun bersujud dan memastikan <strong>7 anggota sujud</strong> menempel pada lantai: (1) Dahi sekaligus hidung, (2-3) kedua telapak tangan, (4-5) kedua lutut, (6-7) kedua ujung kaki (jari kaki ditekuk menghadap kiblat dan tumit dirapatkan).</p>
+              <p class="content-text">Siku diangkat dari lantai dan direnggangkan dari lambung (bagi laki-laki).</p>
+
+              <div class="dalil-box">
+                <strong>📖 Dalil — HR. Bukhari no. 812 & Muslim no. 490</strong>
+                Rasulullah ﷺ bersabda: "Aku diperintahkan untuk sujud di atas tujuh tulang (anggota badan): dahi—dan beliau menunjuk dengan tangannya ke hidungnya—, kedua tangan, kedua lutut, dan ujung jari-jari kedua kaki."
+              </div>
+
+              <p class="content-text"><strong>Cara turun ke sujud:</strong></p>
+              <div class="dalil-box">
+                <strong>📖 Cara 1 — Lutut dahulu (HR. Abu Dawud no. 838, An-Nasa'i no. 1089)</strong>
+                Dari Wa'il bin Hujr رضي الله عنه: "Aku melihat Rasulullah ﷺ jika sujud meletakkan kedua lututnya sebelum kedua tangannya..."
+              </div>
+              <div class="dalil-box">
+                <strong>📖 Cara 2 — Tangan dahulu (HR. Abu Dawud no. 840, An-Nasa'i no. 1091)</strong>
+                Dari Abu Hurairah رضي الله عنه: "Jika salah seorang dari kalian sujud, janganlah ia menderum sebagaimana menderumnya unta, dan hendaklah ia meletakkan kedua tangannya sebelum kedua lututnya."
+              </div>
+            </div>
+
+            <div class="sep"></div>
+
+            <!-- B. Bacaan -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                Bacaan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">B</span> Bacaan Sujud</div>
+
+              <div class="options-container" id="sujudOptions">
+                <div class="options-tabs">
+                  <button class="option-tab active" onclick="switchOption('sujudOptions', 0, this)">Opsi 1</button>
+                  <button class="option-tab" onclick="switchOption('sujudOptions', 1, this)">Opsi 2</button>
+                  <button class="option-tab" onclick="switchOption('sujudOptions', 2, this)">Opsi 3</button>
+                  <button class="option-tab" onclick="switchOption('sujudOptions', 3, this)">Opsi 4</button>
+                  <button class="option-tab" onclick="switchOption('sujudOptions', 4, this)">Opsi 5</button>
+                </div>
+                <div class="option-panel active">
+                  <p class="content-text" style="font-size:0.8rem;color:var(--ink-lighter);">Paling populer — dibaca 3 kali.</p>
+                  <div class="arabic-box">
+                    <div class="arabic-text">سُبْحَانَ رَبِّيَ الْأَعْلَى</div>
+                    <div class="transliteration">Subḥāna Rabbiyal-A'lā (3×)</div>
+                    <div class="meaning">Maha Suci Rabbku Yang Maha Tinggi.</div>
+                  </div>
+                  <div class="dalil-box"><strong>📖 Dalil — HR. Muslim no. 772, Abu Dawud no. 871</strong></div>
+                </div>
+                <div class="option-panel">
+                  <div class="arabic-box">
+                    <div class="arabic-text">سُبْحَانَ رَبِّيَ الْأَعْلَى وَبِحَمْدِهِ</div>
+                    <div class="transliteration">Subḥāna Rabbiyal-A'lā wa biḥamdih (3×)</div>
+                    <div class="meaning">Maha Suci Rabbku Yang Maha Tinggi dan dengan memuji-Nya.</div>
+                  </div>
+                  <div class="dalil-box"><strong>📖 Dalil — HR. Abu Dawud no. 870</strong></div>
+                </div>
+                <div class="option-panel">
+                  <div class="arabic-box">
+                    <div class="arabic-text">سُبْحَانَكَ اللَّهُمَّ رَبَّنَا وَبِحَمْدِكَ اللَّهُمَّ اغْفِرْ لِي</div>
+                    <div class="transliteration">Subḥānakallāhumma Rabbanā wa biḥamdika Allāhummagfir lī.</div>
+                  </div>
+                  <div class="dalil-box"><strong>📖 Dalil — HR. Bukhari no. 794 & Muslim no. 484</strong></div>
+                </div>
+                <div class="option-panel">
+                  <div class="arabic-box">
+                    <div class="arabic-text">سُبُّوحٌ قُدُّوسٌ رَبُّ الْمَلَائِكَةِ وَالرُّوحِ</div>
+                    <div class="transliteration">Subbūḥun Quddūsun Rabbul-malā'ikati war-rūḥ.</div>
+                  </div>
+                  <div class="dalil-box"><strong>📖 Dalil — HR. Muslim no. 487</strong></div>
+                </div>
+                <div class="option-panel">
+                  <p class="content-text" style="font-size:0.8rem;color:var(--ink-lighter);">Sangat dianjurkan untuk memperbanyak ampunan.</p>
+                  <div class="arabic-box">
+                    <div class="arabic-text">اللَّهُمَّ اغْفِرْ لِي ذَنْبِي كُلَّهُ: دِقَّهُ وَجِلَّهُ، وَأَوَّلَهُ وَآخِرَهُ، وَعَلَانِيَتَهُ وَسِرَّهُ</div>
+                    <div class="transliteration">Allāhummagfir lī dzambī kullahū: diqqahū wa jillahū, wa awwalahū wa ākhirahū, wa 'alāniyatahū wa sirrah.</div>
+                    <div class="meaning">Ya Allah, ampunilah seluruh dosaku: yang kecil maupun yang besar, yang awal maupun yang akhir, yang terang-terangan maupun yang tersembunyi.</div>
+                  </div>
+                  <div class="dalil-box"><strong>📖 Dalil — HR. Muslim no. 483</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══════ STEP 9 ═══════ -->
+      <article class="step" id="step-9">
+        <div class="step-header" onclick="toggleStep(this)">
+          <div class="step-number">9</div>
+          <h2>Duduk di Antara Dua Sujud</h2>
+          <button class="step-toggle" aria-label="Toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        </div>
+        <div class="step-body">
+          <div class="step-image">
+            <img src="assets/duduk_antara_dua_sujud.png" alt="Duduk Antara Dua Sujud" loading="lazy" />
+          </div>
+          <div class="step-content">
+            <!-- A. Gerakan -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-5"/></svg>
+                Gerakan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">A</span> Duduk Iftirash</div>
+              <p class="content-text">Bangkit dari sujud seraya mengucapkan takbir ("Allahu Akbar") tanpa mengangkat tangan. Duduk di atas telapak kaki kiri yang dihamparkan (iftirash), menegakkan telapak kaki kanan dengan jari-jari kakinya ditekuk menghadap kiblat. Kedua telapak tangan diletakkan di atas paha/lutut.</p>
+              <div class="dalil-box">
+                <strong>📖 Dalil — HR. Muslim no. 498</strong>
+                Dari Aisyah رضي الله عنها: "Dan beliau menghamparkan kaki kirinya dan menegakkan kaki kanannya..."
+              </div>
+            </div>
+
+            <div class="sep"></div>
+
+            <!-- B. Bacaan -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                Bacaan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">B</span> Bacaan Duduk Antara Dua Sujud</div>
+
+              <div class="options-container" id="dudukSujudOptions">
+                <div class="options-tabs">
+                  <button class="option-tab active" onclick="switchOption('dudukSujudOptions', 0, this)">Opsi 1 — Sederhana</button>
+                  <button class="option-tab" onclick="switchOption('dudukSujudOptions', 1, this)">Opsi 2 — Lengkap</button>
+                </div>
+                <div class="option-panel active">
+                  <div class="arabic-box">
+                    <div class="arabic-text">رَبِّ اغْفِرْ لِي، رَبِّ اغْفِرْ لِي</div>
+                    <div class="transliteration">Rabbigfir lī, Rabbigfir lī.</div>
+                    <div class="meaning">Wahai Rabbku, ampunilah aku. Wahai Rabbku, ampunilah aku.</div>
+                  </div>
+                  <div class="dalil-box"><strong>📖 Dalil — HR. Abu Dawud no. 874, An-Nasa'i no. 1145, Ibnu Majah no. 897</strong></div>
+                </div>
+                <div class="option-panel">
+                  <div class="arabic-box">
+                    <div class="arabic-text">اللَّهُمَّ اغْفِرْ لِي، وَارْحَمْنِي، وَعَافِنِي، وَاهْدِنِي، وَارْزُقْنِي</div>
+                    <div class="transliteration">Allāhummagfir lī, warḥamnī, wa 'āfinī, wahdinī, warzuqnī.</div>
+                    <div class="meaning">Ya Allah ampunilah aku, sayangilah aku, berikanlah keselamatan padaku, berikanlah petunjuk padaku, dan limpahkanlah rezeki kepadaku.</div>
+                  </div>
+                  <div class="dalil-box"><strong>📖 Dalil — HR. Abu Dawud no. 850, At-Tirmidzi no. 284</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══════ STEP 10 ═══════ -->
+      <article class="step" id="step-10">
+        <div class="step-header" onclick="toggleStep(this)">
+          <div class="step-number">10</div>
+          <h2>Sujud Kedua</h2>
+          <button class="step-toggle" aria-label="Toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        </div>
+        <div class="step-body">
+          <div class="step-image">
+            <img src="assets/sujud.png" alt="Sujud Kedua" loading="lazy" />
+          </div>
+          <div class="step-content">
+            <div class="subsection">
+              <p class="content-text">Gerakan, syarat 7 anggota sujud, serta bacaannya <strong>sama persis</strong> seperti pada sujud yang pertama (Langkah 8).</p>
+              <div class="dalil-box">
+                <strong>📖 Catatan</strong>
+                Silakan lihat bacaan sujud pada Langkah 8 untuk variasi doa yang bisa dibaca secara bergantian.
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══════ STEP 11 ═══════ -->
+      <article class="step" id="step-11">
+        <div class="step-header" onclick="toggleStep(this)">
+          <div class="step-number">11</div>
+          <h2>Duduk Istirahat & Berdiri</h2>
+          <button class="step-toggle" aria-label="Toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        </div>
+        <div class="step-body">
+          <div class="step-content">
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-5"/></svg>
+                Gerakan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">A</span> Duduk Istirahat</div>
+              <p class="content-text">Sebelum langsung bangkit berdiri tegak untuk rakaat berikutnya, disunnahkan untuk duduk istirahat sejenak (seperti duduk iftirash) <strong>tanpa membaca doa apa pun</strong>, kemudian bertumpu dengan kedua tangan pada lantai untuk bangkit berdiri.</p>
+              <div class="dalil-box">
+                <strong>📖 Dalil — HR. Bukhari no. 823</strong>
+                Dari Malik bin Al-Huwairits Al-Laitsi رضي الله عنه: "Bahwasanya ia melihat Nabi ﷺ shalat, apabila beliau berada pada rakaat ganjil dari shalatnya, beliau tidak langsung bangkit berdiri hingga beliau duduk tegak terlebih dahulu (duduk istirahat)."
+              </div>
+              <div class="dalil-box">
+                <strong>📖 Dalil — HR. Bukhari no. 824</strong>
+                "Kemudian beliau bertumpu pada bumi (lantai) dengan kedua tangannya ketika bangkit berdiri."
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══════ STEP 12 ═══════ -->
+      <article class="step" id="step-12">
+        <div class="step-header" onclick="toggleStep(this)">
+          <div class="step-number">12</div>
+          <h2>Tasyahud (Tahiyyat) Awal</h2>
+          <button class="step-toggle" aria-label="Toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        </div>
+        <div class="step-body">
+          <div class="step-image">
+            <img src="assets/tasyahud_awal.png" alt="Tasyahud Awal" loading="lazy" />
+          </div>
+          <div class="step-content">
+            <!-- A. Gerakan -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-5"/></svg>
+                Gerakan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">A</span> Duduk Iftirash & Isyarat Jari</div>
+              <p class="content-text">Duduk dengan posisi Iftirash. Tangan kiri diletakkan di atas lutut kiri dengan jari terbuka. Tangan kanan diletakkan di atas paha kanan dengan menggenggam jari-jarinya kecuali jari telunjuk yang diacungkan (menunjuk ke kiblat) dan ibu jari yang didekatkan ke jari tengah. Pandangan mata tertuju ke jari telunjuk tersebut.</p>
+              <div class="dalil-box">
+                <strong>📖 Dalil — HR. Muslim no. 580</strong>
+                Dari Abdullah bin Umar رضي الله عنه: "Nabi ﷺ jika duduk dalam shalat, beliau meletakkan tangan kanannya di atas lutut kanannya, beliau menekuk seluruh jarinya dan menunjuk dengan jari telunjuknya..."
+              </div>
+            </div>
+
+            <div class="sep"></div>
+
+            <!-- B. Bacaan -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                Bacaan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">B</span> Bacaan Tasyahud Awal</div>
+
+              <p class="content-text"><strong>1. Tashahhud (Riwayat Ibnu Mas'ud — Paling Shahih):</strong></p>
+              <div class="arabic-box">
+                <div class="arabic-text">التَّحِيَّاتُ لِلَّهِ، وَالصَّلَوَاتُ وَالطَّيِّبَاتُ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ. أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ</div>
+                <div class="transliteration">At-taḥiyyātu lillāhi, waṣ-ṣalawātu waṭ-ṭayyibāt. As-salāmu 'alaika ayyuhan-nabiyyu wa raḥmatullāhi wa barakātuh. As-salāmu 'alainā wa 'alā 'ibādillāhiṣ-ṣāliḥīn. Asyhadu allā ilāha illallāhu, wa asyhadu anna Muḥammadan 'abduhū wa rasūluh.</div>
+                <div class="meaning">Segala penghormatan hanyalah milik Allah, begitu juga segala ibadah dan kebaikan. Semoga kesejahteraan tercurah kepadamu wahai Nabi, begitu pula rahmat Allah dan berkah-Nya. Semoga kesejahteraan tercurah kepada kami dan kepada hamba-hamba Allah yang shalih. Aku bersaksi bahwa tidak ada ilah yang berhak disembah selain Allah, dan aku bersaksi bahwa Muhammad adalah hamba dan utusan-Nya.</div>
+              </div>
+              <div class="dalil-box"><strong>📖 Dalil — HR. Bukhari no. 1202 & Muslim no. 402</strong></div>
+
+              <p class="content-text" style="margin-top:1.2rem;"><strong>2. Sholawat Nabi (Disunnahkan sebelum bangkit):</strong></p>
+              <div class="arabic-box">
+                <div class="arabic-text">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ</div>
+                <div class="transliteration">Allāhumma ṣalli 'alā Muḥammad.</div>
+                <div class="meaning">Ya Allah, berilah berkah sholawat kepada Muhammad.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══════ STEP 13 ═══════ -->
+      <article class="step" id="step-13">
+        <div class="step-header" onclick="toggleStep(this)">
+          <div class="step-number">13</div>
+          <h2>Tasyahud (Tahiyyat) Akhir</h2>
+          <button class="step-toggle" aria-label="Toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        </div>
+        <div class="step-body">
+          <div class="step-image">
+            <img src="assets/tasyahud_akhir.png" alt="Tasyahud Akhir" loading="lazy" />
+          </div>
+          <div class="step-content">
+            <!-- A. Gerakan -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-5"/></svg>
+                Gerakan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">A</span> Duduk Tawarruk</div>
+              <p class="content-text">Duduk dengan posisi pantat kiri langsung menyentuh lantai, kaki kiri dikeluarkan di bawah kaki kanan (disilangkan ke arah kanan), dan kaki kanan ditegakkan dengan jari-jari ditekuk menghadap kiblat.</p>
+              <div class="dalil-box">
+                <strong>📖 Dalil — HR. Bukhari no. 828</strong>
+                Dari Abu Humaid As-Sa'idi رضي الله عنه: "...dan apabila beliau duduk pada rakaat terakhir, beliau memajukan kaki kirinya dan menegakkan kaki kanannya, lalu beliau duduk di atas tempat duduknya (pantat langsung menyentuh lantai)."
+              </div>
+            </div>
+
+            <div class="sep"></div>
+
+            <!-- B. Bacaan -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                Bacaan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">B</span> Bacaan Tasyahud Akhir</div>
+
+              <p class="content-text"><strong>1. Tasyahud (sama seperti Tasyahud Awal).</strong></p>
+
+              <p class="content-text" style="margin-top:1rem;"><strong>2. Sholawat Ibrahimiyah (Wajib/Rukun):</strong></p>
+              <div class="arabic-box">
+                <div class="arabic-text">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كَمَا صَلَّيْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ. اللَّهُمَّ بَارِكْ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ، كَمَا بَارَكْتَ عَلَى إِبْرَاهِيمَ وَعَلَى آلِ إِبْرَاهِيمَ، إِنَّكَ حَمِيدٌ مَجِيدٌ</div>
+                <div class="transliteration">Allāhumma ṣalli 'alā Muḥammadiw-wa 'alā āli Muḥammad, kamā ṣallaita 'alā Ibrāhīma wa 'alā āli Ibrāhīm, innaka Ḥamīdum-Majīd. Allāhumma bārik 'alā Muḥammadiw-wa 'alā āli Muḥammad, kamā bārakta 'alā Ibrāhīma wa 'alā āli Ibrāhīm, innaka Ḥamīdum-Majīd.</div>
+                <div class="meaning">Ya Allah, berilah berkah sholawat kepada Muhammad dan keluarga Muhammad, sebagaimana Engkau telah memberi sholawat kepada Ibrahim dan keluarga Ibrahim. Sesungguhnya Engkau Maha Terpuji lagi Maha Agung. Ya Allah, berkahilah Muhammad dan keluarga Muhammad, sebagaimana Engkau telah memberkahi Ibrahim dan keluarga Ibrahim. Sesungguhnya Engkau Maha Terpuji lagi Maha Agung.</div>
+              </div>
+              <div class="dalil-box"><strong>📖 Dalil — HR. Bukhari no. 3370 & Muslim no. 405</strong></div>
+
+              <p class="content-text" style="margin-top:1rem;"><strong>3. Doa Perlindungan dari 4 Fitnah (sangat ditekankan):</strong></p>
+              <div class="arabic-box">
+                <div class="arabic-text">اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنْ عَذَابِ جَهَنَّمَ، وَمِنْ عَذَابِ الْقَبْرِ، وَمِنْ فِتْنَةِ الْمَحْيَا وَالْمَمَاتِ، وَمِنْ شَرِّ فِتْنَةِ الْمَسِيحِ الدَّجَّالِ</div>
+                <div class="transliteration">Allāhumma innī a'ūdzu bika min 'adzābi jahannama, wa min 'adzābil-qabri, wa min fitnatil-maḥyā wal-mamāti, wa min syarri fitnatil-masīḥid-dajjāl.</div>
+                <div class="meaning">Ya Allah, sesungguhnya aku berlindung kepada-Mu dari azab Neraka Jahannam, dari azab kubur, dari fitnah kehidupan dan kematian, serta dari keburukan fitnah Al-Masih Ad-Dajjal.</div>
+              </div>
+              <div class="dalil-box"><strong>📖 Dalil — HR. Muslim no. 588</strong></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══════ STEP 14 ═══════ -->
+      <article class="step" id="step-14">
+        <div class="step-header" onclick="toggleStep(this)">
+          <div class="step-number">14</div>
+          <h2>Salam</h2>
+          <button class="step-toggle" aria-label="Toggle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        </div>
+        <div class="step-body">
+          <div class="step-image">
+            <img src="assets/salam.png" alt="Salam" loading="lazy" />
+          </div>
+          <div class="step-content">
+            <!-- A. Gerakan -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-5"/></svg>
+                Gerakan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">A</span> Menoleh ke Kanan dan ke Kiri</div>
+              <p class="content-text">Memutar wajah ke arah kanan hingga pipi kanan terlihat dari arah belakang, kemudian memutar wajah ke arah kiri hingga pipi kiri terlihat dari arah belakang.</p>
+              <div class="dalil-box">
+                <strong>📖 Dalil — HR. Abu Dawud no. 996, At-Tirmidzi no. 295</strong>
+                Dari Abdullah bin Mas'ud رضي الله عنه: "Bahwasanya Nabi ﷺ mengucapkan salam ke arah kanan dan kirinya, (hingga) terlihat putih pipi kanannya dan (hingga) terlihat putih pipi kirinya."
+              </div>
+            </div>
+
+            <div class="sep"></div>
+
+            <!-- B. Bacaan -->
+            <div class="subsection">
+              <div class="section-label">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
+                Bacaan
+              </div>
+              <div class="subsection-title"><span class="letter-badge">B</span> Bacaan Salam</div>
+
+              <div class="options-container" id="salamOptions">
+                <div class="options-tabs">
+                  <button class="option-tab active" onclick="switchOption('salamOptions', 0, this)">Opsi 1 — Populer</button>
+                  <button class="option-tab" onclick="switchOption('salamOptions', 1, this)">Opsi 2 — Tambahan</button>
+                </div>
+                <div class="option-panel active">
+                  <p class="content-text"><strong>Ke Kanan & Ke Kiri:</strong></p>
+                  <div class="arabic-box">
+                    <div class="arabic-text">السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ</div>
+                    <div class="transliteration">As-salāmu 'alaikum wa raḥmatullāh.</div>
+                    <div class="meaning">Semoga keselamatan dan rahmat Allah tercurahkan kepadamu.</div>
+                  </div>
+                  <div class="dalil-box"><strong>📖 Dalil — HR. Muslim no. 582</strong></div>
+                </div>
+                <div class="option-panel">
+                  <p class="content-text"><strong>Ke Kanan (dengan tambahan "Wabarakatuh"):</strong></p>
+                  <div class="arabic-box">
+                    <div class="arabic-text">السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ</div>
+                    <div class="transliteration">As-salāmu 'alaikum wa raḥmatullāhi wa barakātuh.</div>
+                  </div>
+                  <p class="content-text" style="margin-top:0.8rem;"><strong>Ke Kiri:</strong></p>
+                  <div class="arabic-box">
+                    <div class="arabic-text">السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللَّهِ</div>
+                    <div class="transliteration">As-salāmu 'alaikum wa raḥmatullāh.</div>
+                  </div>
+                  <div class="dalil-box"><strong>📖 Dalil — HR. Abu Dawud no. 997</strong></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- ═══════ THUMA'NINAH BANNER ═══════ -->
+      <div class="important-banner" id="thumaninah">
+        <h3>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          Tambahan Penting: Thuma'ninah
+        </h3>
+        <p>Sholat <strong>tidak akan sah</strong> jika tidak disertai dengan Thuma'ninah. Thuma'ninah artinya adalah diam/tenang sejenak di setiap gerakan sholat (Rukuk, I'tidal, Sujud, Duduk di antara dua sujud) minimal selama durasi membaca dzikir/bacaan wajib di gerakan tersebut.</p>
+        <br/>
+        <p><strong>Dalil — HR. Bukhari no. 757 & Muslim no. 397:</strong><br/>
+        Nabi ﷺ bersabda kepada orang yang shalatnya terburu-buru: <em>"Lalu rukuklah hingga kamu thuma'ninah dalam rukukmu, kemudian bangkitlah hingga kamu berdiri tegak, kemudian sujudlah hingga kamu thuma'ninah dalam sujudmu, kemudian bangkitlah hingga kamu thuma'ninah dalam dudukmu, lalu lakukanlah hal itu pada seluruh shalatmu."</em></p>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer class="footer">
+    <div class="footer-bismillah">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</div>
+    <p>Panduan Tata Cara Sholat — Berdasarkan Dalil-Dalil Shahih</p>
+    <p style="margin-top:4px;font-size:0.72rem;">Semoga Allah menerima ibadah kita semua. Aamiin.</p>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+
+  <!-- Mobile Nav Toggle -->
+  <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Open navigation" onclick="toggleMobileNav()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h18"/><path d="M3 6h18"/><path d="M3 18h18"/></svg>
+  </button>
+
+  <!-- Mobile Sidebar Overlay -->
+  <div class="mobile-sidebar-overlay" id="mobileOverlay" onclick="toggleMobileNav()"></div>
+
+  <!-- Mobile Sidebar -->
+  <nav class="mobile-sidebar" id="mobileSidebar">
+    <div class="sidebar-title">Daftar Isi</div>
+    <ol id="mobileTocList">
+      <li><a href="#step-1" onclick="toggleMobileNav()">Menghadap Kiblat & Niat</a></li>
+      <li><a href="#step-2" onclick="toggleMobileNav()">Takbiratul Ihram</a></li>
+      <li><a href="#step-3" onclick="toggleMobileNav()">Bersedekap & Doa Istiftah</a></li>
+      <li><a href="#step-4" onclick="toggleMobileNav()">Ta'awudz & Al-Fatihah</a></li>
+      <li><a href="#step-5" onclick="toggleMobileNav()">Membaca Surah</a></li>
+      <li><a href="#step-6" onclick="toggleMobileNav()">Rukuk</a></li>
+      <li><a href="#step-7" onclick="toggleMobileNav()">I'tidal</a></li>
+      <li><a href="#step-8" onclick="toggleMobileNav()">Sujud</a></li>
+      <li><a href="#step-9" onclick="toggleMobileNav()">Duduk Antara Dua Sujud</a></li>
+      <li><a href="#step-10" onclick="toggleMobileNav()">Sujud Kedua</a></li>
+      <li><a href="#step-11" onclick="toggleMobileNav()">Duduk Istirahat & Berdiri</a></li>
+      <li><a href="#step-12" onclick="toggleMobileNav()">Tasyahud Awal</a></li>
+      <li><a href="#step-13" onclick="toggleMobileNav()">Tasyahud Akhir</a></li>
+      <li><a href="#step-14" onclick="toggleMobileNav()">Salam</a></li>
+    </ol>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       JAVASCRIPT
+       ═══════════════════════════════════════════ -->
+  <script>
+    // ── Toggle individual step accordion ──
+    function toggleStep(header) {
+      const step = header.closest('.step');
+      step.classList.toggle('open');
+    }
+
+    // ── Toggle all steps ──
+    function toggleAll(open) {
+      document.querySelectorAll('.step').forEach(s => {
+        if (open) s.classList.add('open');
+        else s.classList.remove('open');
+      });
+    }
+
+    // ── Option tab switching ──
+    function switchOption(containerId, index, btn) {
+      const container = document.getElementById(containerId);
+      const tabs = container.querySelectorAll('.option-tab');
+      const panels = container.querySelectorAll('.option-panel');
+
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+
+      btn.classList.add('active');
+      panels[index].classList.add('active');
+    }
+
+    // ── Intersection Observer for scroll animations ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.step, .important-banner').forEach(el => observer.observe(el));
+
+    // ── Active sidebar link tracking ──
+    const stepSections = document.querySelectorAll('.step');
+    const tocLinks = document.querySelectorAll('#tocList a, #mobileTocList a');
+
+    const sidebarObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          tocLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { threshold: 0.3, rootMargin: '-20% 0px -60% 0px' });
+
+    stepSections.forEach(section => sidebarObserver.observe(section));
+
+    // ── Back to top button ──
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 600);
+    });
+
+    // ── Progress bar ──
+    const progressBar = document.getElementById('progressBar');
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      progressBar.style.width = scrollPercent + '%';
+    });
+
+    // ── Mobile nav ──
+    function toggleMobileNav() {
+      document.getElementById('mobileSidebar').classList.toggle('open');
+      document.getElementById('mobileOverlay').classList.toggle('open');
+    }
+
+    // ── Open first step by default ──
+    document.querySelector('.step').classList.add('open');
+  </script>
+</body>
+</html>
