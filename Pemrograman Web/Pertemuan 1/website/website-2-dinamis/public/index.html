@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Buku Tamu Digital — Tulis pesan dan kesan Anda. Data tersimpan secara dinamis di server.">
+    <title>Buku Tamu Digital — Website Dinamis</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Background Effects -->
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+    <div class="bg-grid"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="header-left">
+                    <span class="header-icon">📝</span>
+                    <div>
+                        <h1 class="header-title">Buku Tamu Digital</h1>
+                        <p class="header-subtitle">Website Dinamis — Data tersimpan di server</p>
+                    </div>
+                </div>
+                <div class="header-badge">
+                    <span class="badge-dot"></span>
+                    <span>Server Active</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Info Banner -->
+            <div class="info-banner" id="infoBanner">
+                <div class="info-icon">💡</div>
+                <div class="info-content">
+                    <strong>Website Dinamis:</strong> Data yang Anda masukkan akan tersimpan di file JSON di server (menggunakan Node.js). Data tetap ada meskipun halaman di-refresh atau browser ditutup!
+                </div>
+                <button class="info-close" id="infoClose" aria-label="Close">✕</button>
+            </div>
+
+            <div class="content-grid">
+                <!-- Form Section -->
+                <section class="form-section">
+                    <div class="card form-card">
+                        <div class="card-header">
+                            <h2>✍️ Tulis Pesan</h2>
+                            <p>Bagikan kesan dan pesan Anda</p>
+                        </div>
+                        <form id="guestForm" class="guest-form">
+                            <div class="form-group">
+                                <label for="nama">Nama Lengkap</label>
+                                <input type="text" id="nama" name="nama" placeholder="Masukkan nama Anda..." required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="contoh@email.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="instansi">Instansi / Sekolah</label>
+                                <input type="text" id="instansi" name="instansi" placeholder="Asal instansi atau sekolah...">
+                            </div>
+                            <div class="form-group">
+                                <label for="pesan">Pesan</label>
+                                <textarea id="pesan" name="pesan" rows="4" placeholder="Tulis pesan atau kesan Anda..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-submit" id="submitBtn">
+                                <span class="btn-text">Kirim Pesan</span>
+                                <span class="btn-loader" id="btnLoader"></span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Stats -->
+                    <div class="card stats-card">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-value" id="totalPesan">0</span>
+                                <span class="stat-label">Total Pesan</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-value" id="pesanHariIni">0</span>
+                                <span class="stat-label">Hari Ini</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Messages Section -->
+                <section class="messages-section">
+                    <div class="messages-header">
+                        <h2>📬 Pesan Tamu</h2>
+                        <div class="messages-actions">
+                            <button class="btn btn-icon" id="refreshBtn" title="Refresh data">🔄</button>
+                        </div>
+                    </div>
+                    <div class="messages-list" id="messagesList">
+                        <!-- Messages loaded via JS -->
+                        <div class="loading-state" id="loadingState">
+                            <div class="spinner"></div>
+                            <p>Memuat data...</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span class="toast-icon" id="toastIcon">✅</span>
+        <span class="toast-message" id="toastMessage">Pesan berhasil dikirim!</span>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal">
+            <div class="modal-icon">⚠️</div>
+            <h3>Hapus Pesan?</h3>
+            <p>Pesan ini akan dihapus permanen dari server. Tindakan ini tidak dapat dibatalkan.</p>
+            <div class="modal-actions">
+                <button class="btn btn-ghost" id="cancelDelete">Batal</button>
+                <button class="btn btn-danger" id="confirmDelete">Hapus</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

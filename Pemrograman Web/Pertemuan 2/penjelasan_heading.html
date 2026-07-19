@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Heading pada Landing Page</title>
+    <!-- Font modern untuk estetika premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        /* Design System / Tokens */
+        :root {
+            --bg: #0f172a;
+            /* Slate 900 */
+            --surface: #1e293b;
+            /* Slate 800 */
+            --primary: #3b82f6;
+            /* Blue 500 */
+            --text: #f8fafc;
+            /* Slate 50 */
+            --text-muted: #94a3b8;
+            /* Slate 400 */
+
+            /* Warna khusus untuk mode struktur (Wireframe mode) */
+            --c-h1: #ec4899;
+            /* Pink */
+            --c-h2: #a855f7;
+            /* Purple */
+            --c-h3: #3b82f6;
+            /* Blue */
+            --c-h4: #10b981;
+            /* Emerald */
+            --c-h5: #f59e0b;
+            /* Amber */
+            --c-h6: #ef4444;
+            /* Red */
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            transition: background-color 0.5s ease;
+        }
+
+        /* =========================================
+           UI KONTROL (TOMBOL TOGGLE)
+           ========================================= */
+        .controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(15px);
+            padding: 1.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            width: 320px;
+        }
+
+        .toggle-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            font-family: inherit;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .legend {
+            display: none;
+            margin-top: 1.5rem;
+            flex-direction: column;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+        }
+
+        .show-structure .legend {
+            display: flex;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #cbd5e1;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+
+        /* =========================================
+           LAYOUT LANDING PAGE ASLI
+           ========================================= */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 0 5rem 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            font-weight: 800;
+            margin: 0 0 1.5rem 0;
+            background: linear-gradient(135deg, #60a5fa, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+            line-height: 1.6;
+        }
+
+        /* Services Section (Fitur) */
+        .services {
+            padding: 5rem 0;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0 0 3rem 0;
+            text-align: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--surface);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin: 0 0 1rem 0;
+            color: white;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Team / Detail Section */
+        .team {
+            padding: 5rem 0 10rem 0;
+            background: #0b1120;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-member {
+            background: var(--surface);
+            padding: 2rem;
+            border-radius: 16px;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .avatar {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .team-info {
+            flex: 1;
+        }
+
+        h4 {
+            font-size: 1.25rem;
+            margin: 0 0 0.25rem 0;
+            color: white;
+        }
+
+        h5 {
+            font-size: 1rem;
+            margin: 0 0 0.5rem 0;
+            color: var(--primary);
+            font-weight: 400;
+        }
+
+        h6 {
+            font-size: 0.75rem;
+            margin: 0 0 1rem 0;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .team-member p {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            margin: 0;
+            font-style: italic;
+        }
+
+        /* =========================================
+           MODE STRUKTUR (WIREFRAME PENJELASAN)
+           ========================================= */
+        body.show-structure {
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.03) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 2px, transparent 2px);
+            background-size: 30px 30px;
+        }
+
+        /* Transisi untuk heading saat masuk mode struktur */
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            transition: all 0.4s ease;
+        }
+
+        body.show-structure h1,
+        body.show-structure h2,
+        body.show-structure h3,
+        body.show-structure h4,
+        body.show-structure h5,
+        body.show-structure h6 {
+            position: relative;
+            background: rgba(15, 23, 42, 0.9) !important;
+            -webkit-text-fill-color: initial !important;
+            color: white !important;
+            padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Label Penjelasan (Pseudo-element) */
+        body.show-structure h1::before,
+        body.show-structure h2::before,
+        body.show-structure h3::before,
+        body.show-structure h4::before,
+        body.show-structure h5::before,
+        body.show-structure h6::before {
+            position: absolute;
+            top: -12px;
+            left: 15px;
+            font-size: 0.85rem;
+            font-family: monospace;
+            padding: 4px 10px;
+            border-radius: 4px;
+            color: white;
+            font-weight: 700;
+            letter-spacing: 0;
+            text-transform: none;
+            line-height: 1.5;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        /* Style per Level Heading */
+        body.show-structure h1 {
+            border: 3px dashed var(--c-h1);
+            box-shadow: 0 0 30px rgba(236, 72, 153, 0.2);
+        }
+
+        body.show-structure h1::before {
+            content: "<h1> Judul Utama Dokumen (Topik Terbesar)";
+            background: var(--c-h1);
+        }
+
+        body.show-structure h2 {
+            border: 3px dashed var(--c-h2);
+        }
+
+        body.show-structure h2::before {
+            content: "<h2> Bagian/Section Baru (Grup Konten)";
+            background: var(--c-h2);
+        }
+
+        body.show-structure h3 {
+            border: 2px dashed var(--c-h3);
+        }
+
+        body.show-structure h3::before {
+            content: "<h3> Sub-judul di dalam Section";
+            background: var(--c-h3);
+        }
+
+        body.show-structure h4 {
+            border: 2px dashed var(--c-h4);
+            padding-top: 2rem;
+        }
+
+        body.show-structure h4::before {
+            content: "<h4> Judul Spesifik";
+            background: var(--c-h4);
+        }
+
+        body.show-structure h5 {
+            border: 2px dashed var(--c-h5);
+            padding-top: 2rem;
+            display: inline-block;
+        }
+
+        body.show-structure h5::before {
+            content: "<h5> Sub-Spesifik";
+            background: var(--c-h5);
+        }
+
+        body.show-structure h6 {
+            border: 2px dashed var(--c-h6);
+            padding-top: 2rem;
+        }
+
+        body.show-structure h6::before {
+            content: "<h6> Detail Terkecil";
+            background: var(--c-h6);
+        }
+
+        /* Meredupkan elemen non-heading agar fokus ke struktur */
+        body.show-structure p,
+        body.show-structure .avatar {
+            opacity: 0.15;
+            transition: opacity 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Panel Kontrol untuk Mengubah Mode -->
+    <div class="controls">
+        <button class="toggle-btn" id="toggleBtn">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+            </svg>
+            Tampilkan Struktur Heading
+        </button>
+        <div class="legend">
+            <div style="font-weight: bold; margin-bottom: 5px; color: white;">Hierarki Semantik Halaman:</div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: var(--c-h1);"></div> H1: Topik Utama (Hanya 1 per web)
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: var(--c-h2);"></div> H2: Pembagian Seksi / Bab Besar
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: var(--c-h3);"></div> H3: Judul Konten (Kartu / Grid)
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: var(--c-h4);"></div> H4: Judul Spesifik / Nama
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: var(--c-h5);"></div> H5: Sub-atribut / Jabatan
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background: var(--c-h6);"></div> H6: Detail Super Kecil / Status
+            </div>
+        </div>
+    </div>
+
+    <!-- Halaman Landing Page Asli -->
+    <div class="hero">
+        <div class="container">
+            <h1>Platform Digital Revolusioner</h1>
+            <p>Membangun masa depan web dengan struktur HTML semantik yang sempurna, SEO friendly, dan desain memukau.
+            </p>
+        </div>
+    </div>
+
+    <div class="services">
+        <div class="container">
+            <h2>Layanan Unggulan</h2>
+
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Desain Antarmuka (UI/UX)</h3>
+                    <p>Menciptakan pengalaman pengguna yang luar biasa dengan desain yang intuitif.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Pengembangan Frontend</h3>
+                    <p>Membangun aplikasi web interaktif menggunakan teknologi modern.</p>
+                </div>
+
+                <div class="card">
+                    <h3>SEO Optimization</h3>
+                    <p>Memastikan struktur dokumen HTML Anda sempurna dengan hierarki heading yang tepat.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="team">
+        <div class="container">
+            <h2>Klien & Testimoni</h2>
+
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="avatar"></div>
+                    <div class="team-info">
+                        <h4>Budi Santoso</h4>
+                        <h5>CEO Tech Indo</h5>
+                        <h6>Verifikasi Klien Aktif</h6>
+                        <p>"Platform ini sangat membantu bisnis kami berkembang pesat! Desainnya luar biasa."</p>
+                    </div>
+                </div>
+
+                <div class="team-member">
+                    <div class="avatar"></div>
+                    <div class="team-info">
+                        <h4>Siti Aminah</h4>
+                        <h5>Direktur Pemasaran</h5>
+                        <h6>Verifikasi Klien Aktif</h6>
+                        <p>"Struktur web yang baik membuat SEO kami naik drastis di pencarian Google."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const btn = document.getElementById('toggleBtn');
+        let isStructureMode = false;
+
+        btn.addEventListener('click', () => {
+            isStructureMode = !isStructureMode;
+            document.body.classList.toggle('show-structure');
+
+            if (isStructureMode) {
+                btn.innerHTML = '<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg> Sembunyikan Struktur';
+                btn.style.background = '#ec4899'; // Pink saat aktif
+            } else {
+                btn.innerHTML = '<svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg> Tampilkan Struktur Heading';
+                btn.style.background = '#3b82f6'; // Biru saat normal
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Catatan Pengeluaran Harian — Catat dan pantau pengeluaran Anda hari ini. Data hanya tersimpan sementara.">
+    <title>Catatan Pengeluaran — Website Statis + JavaScript</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background Effects -->
+    <div class="bg-gradient"></div>
+    <div class="bg-noise"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="header-left">
+                <span class="header-icon">💸</span>
+                <div>
+                    <h1 class="header-title">Catatan Pengeluaran</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="container">
+            <!-- Warning Banner -->
+
+            <!-- Summary Cards -->
+            <div class="summary-grid">
+                <div class="summary-card total">
+                    <div class="summary-icon">💰</div>
+                    <div class="summary-info">
+                        <span class="summary-label">Total Pengeluaran</span>
+                        <span class="summary-value" id="totalPengeluaran">Rp 0</span>
+                    </div>
+                </div>
+                <div class="summary-card count">
+                    <div class="summary-icon">📋</div>
+                    <div class="summary-info">
+                        <span class="summary-label">Jumlah Transaksi</span>
+                        <span class="summary-value" id="jumlahTransaksi">0</span>
+                    </div>
+                </div>
+                <div class="summary-card average">
+                    <div class="summary-icon">📊</div>
+                    <div class="summary-info">
+                        <span class="summary-label">Rata-rata</span>
+                        <span class="summary-value" id="rataRata">Rp 0</span>
+                    </div>
+                </div>
+                <div class="summary-card highest">
+                    <div class="summary-icon">🔺</div>
+                    <div class="summary-info">
+                        <span class="summary-label">Tertinggi</span>
+                        <span class="summary-value" id="tertinggi">Rp 0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <!-- Form Section -->
+                <section class="form-section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>➕ Tambah Pengeluaran</h2>
+                        </div>
+                        <form id="expenseForm" class="expense-form">
+                            <div class="form-group">
+                                <label for="keterangan">Keterangan</label>
+                                <input type="text" id="keterangan" placeholder="Contoh: Makan siang, Bensin, dll."
+                                    required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="jumlah">Jumlah (Rp)</label>
+                                    <input type="number" id="jumlah" placeholder="50000" min="1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="kategori">Kategori</label>
+                                    <select id="kategori">
+                                        <option value="makanan">🍔 Makanan</option>
+                                        <option value="transport">🚗 Transport</option>
+                                        <option value="belanja">🛒 Belanja</option>
+                                        <option value="hiburan">🎮 Hiburan</option>
+                                        <option value="kesehatan">💊 Kesehatan</option>
+                                        <option value="pendidikan">📚 Pendidikan</option>
+                                        <option value="lainnya">📌 Lainnya</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-submit">
+                                <span>Tambah Pengeluaran</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Category Breakdown -->
+                    <div class="card category-card" id="categoryCard" style="display: none;">
+                        <div class="card-header">
+                            <h2>📊 Per Kategori</h2>
+                        </div>
+                        <div class="category-list" id="categoryList"></div>
+                    </div>
+                </section>
+
+                <!-- Transaction List -->
+                <section class="list-section">
+                    <div class="list-header">
+                        <h2>📑 Daftar Pengeluaran</h2>
+                        <div class="list-actions">
+                            <select id="filterKategori" class="filter-select">
+                                <option value="all">Semua Kategori</option>
+                                <option value="makanan">🍔 Makanan</option>
+                                <option value="transport">🚗 Transport</option>
+                                <option value="belanja">🛒 Belanja</option>
+                                <option value="hiburan">🎮 Hiburan</option>
+                                <option value="kesehatan">💊 Kesehatan</option>
+                                <option value="pendidikan">📚 Pendidikan</option>
+                                <option value="lainnya">📌 Lainnya</option>
+                            </select>
+                            <button class="btn btn-icon btn-clear" id="clearAllBtn" title="Hapus Semua"
+                                style="display: none;">🗑️ Hapus Semua</button>
+                        </div>
+                    </div>
+                    <div class="transaction-list" id="transactionList">
+                        <div class="empty-state">
+                            <div class="empty-illustration">📝</div>
+                            <p class="empty-title">Belum ada pengeluaran</p>
+                            <p class="empty-subtitle">Mulai catat pengeluaran Anda hari ini!</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span class="toast-icon" id="toastIcon">✅</span>
+        <span class="toast-message" id="toastMessage"></span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

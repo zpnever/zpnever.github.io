@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Kopi Nusantara - Kedai kopi premium dengan cita rasa khas Indonesia. Nikmati kopi pilihan dari berbagai penjuru Nusantara.">
+    <title>Kopi Nusantara — Kedai Kopi Premium Indonesia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-icon">☕</span>
+                <span class="logo-text">Kopi Nusantara</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link active">Beranda</a></li>
+                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#tentang" class="nav-link">Tentang</a></li>
+                <li><a href="#galeri" class="nav-link">Galeri</a></li>
+                <li><a href="#kontak" class="nav-link">Kontak</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-overlay"></div>
+        <div class="hero-particles" id="particles"></div>
+        <div class="container hero-content">
+            <span class="hero-badge">✦ SEJAK 2020 ✦</span>
+            <h1 class="hero-title">
+                Rasakan Cita Rasa<br>
+                <span class="highlight">Kopi Nusantara</span>
+            </h1>
+            <p class="hero-subtitle">Dari pegunungan Gayo hingga dataran tinggi Toraja, kami menghadirkan kopi terbaik Indonesia langsung ke cangkir Anda.</p>
+            <div class="hero-buttons">
+                <a href="#menu" class="btn btn-primary">Lihat Menu</a>
+                <a href="#tentang" class="btn btn-outline">Cerita Kami</a>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number" data-target="15">0</span><span class="stat-suffix">+</span>
+                    <span class="stat-label">Varian Kopi</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="5000">0</span><span class="stat-suffix">+</span>
+                    <span class="stat-label">Pelanggan</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number" data-target="4">0</span>
+                    <span class="stat-label">Cabang</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <a href="#menu" class="scroll-indicator">
+                <span>Scroll</span>
+                <div class="scroll-line"></div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section class="section menu-section" id="menu">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Menu Kami</span>
+                <h2 class="section-title">Kopi <span class="highlight">Pilihan</span></h2>
+                <p class="section-desc">Setiap cangkir diolah dengan penuh cinta dan dedikasi tinggi</p>
+            </div>
+
+            <div class="menu-filter">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="espresso">Espresso</button>
+                <button class="filter-btn" data-filter="manual">Manual Brew</button>
+                <button class="filter-btn" data-filter="signature">Signature</button>
+            </div>
+
+            <div class="menu-grid" id="menuGrid">
+                <!-- Espresso Based -->
+                <div class="menu-card" data-category="espresso">
+                    <div class="menu-card-image">
+                        <div class="menu-image-placeholder">
+                            <span class="menu-emoji">☕</span>
+                        </div>
+                        <span class="menu-badge">Best Seller</span>
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3>Espresso Gayo</h3>
+                            <span class="menu-price">Rp 25.000</span>
+                        </div>
+                        <p class="menu-desc">Espresso single origin dari dataran tinggi Gayo, Aceh. Rasa cokelat pahit dengan aftertaste manis.</p>
+                        <div class="menu-tags">
+                            <span class="tag">Bold</span>
+                            <span class="tag">Chocolaty</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="espresso">
+                    <div class="menu-card-image">
+                        <div class="menu-image-placeholder">
+                            <span class="menu-emoji">🥛</span>
+                        </div>
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3>Cappuccino Toraja</h3>
+                            <span class="menu-price">Rp 32.000</span>
+                        </div>
+                        <p class="menu-desc">Perpaduan espresso Toraja yang kaya dengan steamed milk dan foam lembut yang sempurna.</p>
+                        <div class="menu-tags">
+                            <span class="tag">Creamy</span>
+                            <span class="tag">Smooth</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="espresso">
+                    <div class="menu-card-image">
+                        <div class="menu-image-placeholder">
+                            <span class="menu-emoji">🍫</span>
+                        </div>
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3>Café Mocha</h3>
+                            <span class="menu-price">Rp 35.000</span>
+                        </div>
+                        <p class="menu-desc">Espresso bertemu cokelat premium Belgia dan susu segar. Manis, kaya, dan memanjakan lidah.</p>
+                        <div class="menu-tags">
+                            <span class="tag">Sweet</span>
+                            <span class="tag">Rich</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Manual Brew -->
+                <div class="menu-card" data-category="manual">
+                    <div class="menu-card-image">
+                        <div class="menu-image-placeholder">
+                            <span class="menu-emoji">🫖</span>
+                        </div>
+                        <span class="menu-badge hot">New</span>
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3>V60 Kintamani</h3>
+                            <span class="menu-price">Rp 30.000</span>
+                        </div>
+                        <p class="menu-desc">Pour over V60 dengan biji Kintamani, Bali. Rasa citrus segar dengan aroma bunga yang khas.</p>
+                        <div class="menu-tags">
+                            <span class="tag">Fruity</span>
+                            <span class="tag">Floral</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="manual">
+                    <div class="menu-card-image">
+                        <div class="menu-image-placeholder">
+                            <span class="menu-emoji">☕</span>
+                        </div>
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3>French Press Flores</h3>
+                            <span class="menu-price">Rp 28.000</span>
+                        </div>
+                        <p class="menu-desc">Full immersion brewing dari biji Flores, NTT. Body tebal dengan karakter rempah dan karamel.</p>
+                        <div class="menu-tags">
+                            <span class="tag">Spicy</span>
+                            <span class="tag">Caramel</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Signature -->
+                <div class="menu-card" data-category="signature">
+                    <div class="menu-card-image">
+                        <div class="menu-image-placeholder">
+                            <span class="menu-emoji">🌿</span>
+                        </div>
+                        <span class="menu-badge">Signature</span>
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3>Es Kopi Pandan</h3>
+                            <span class="menu-price">Rp 28.000</span>
+                        </div>
+                        <p class="menu-desc">Kreasi khas kami — espresso dengan sirup pandan homemade, susu segar, dan es. Wangi dan menyegarkan.</p>
+                        <div class="menu-tags">
+                            <span class="tag">Refreshing</span>
+                            <span class="tag">Unique</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="signature">
+                    <div class="menu-card-image">
+                        <div class="menu-image-placeholder">
+                            <span class="menu-emoji">🥥</span>
+                        </div>
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3>Kopi Kelapa Bakar</h3>
+                            <span class="menu-price">Rp 32.000</span>
+                        </div>
+                        <p class="menu-desc">Espresso dicampur santan kelapa bakar dan gula aren. Rasa tropical yang otentik Nusantara.</p>
+                        <div class="menu-tags">
+                            <span class="tag">Tropical</span>
+                            <span class="tag">Authentic</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-card" data-category="signature">
+                    <div class="menu-card-image">
+                        <div class="menu-image-placeholder">
+                            <span class="menu-emoji">🍯</span>
+                        </div>
+                        <span class="menu-badge hot">Popular</span>
+                    </div>
+                    <div class="menu-card-body">
+                        <div class="menu-card-header">
+                            <h3>Kopi Susu Aren</h3>
+                            <span class="menu-price">Rp 25.000</span>
+                        </div>
+                        <p class="menu-desc">Kombinasi klasik espresso, susu segar, dan gula aren asli. Favorit sepanjang masa para pelanggan kami.</p>
+                        <div class="menu-tags">
+                            <span class="tag">Classic</span>
+                            <span class="tag">Sweet</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about-section" id="tentang">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-images">
+                    <div class="about-img-main">
+                        <div class="about-image-placeholder">
+                            <span class="about-emoji">🏔️</span>
+                            <span class="about-img-caption">Perkebunan Kopi Gayo</span>
+                        </div>
+                    </div>
+                    <div class="about-img-secondary">
+                        <div class="about-image-placeholder small">
+                            <span class="about-emoji">👨‍🌾</span>
+                            <span class="about-img-caption">Petani Lokal</span>
+                        </div>
+                    </div>
+                    <div class="about-experience-badge">
+                        <span class="exp-number">5+</span>
+                        <span class="exp-text">Tahun<br>Pengalaman</span>
+                    </div>
+                </div>
+                <div class="about-content">
+                    <span class="section-tag">Tentang Kami</span>
+                    <h2 class="section-title left-align">Dari Petani <span class="highlight">ke Cangkir</span></h2>
+                    <p class="about-text">
+                        Kopi Nusantara lahir dari kecintaan mendalam terhadap kopi Indonesia. Kami bekerja langsung dengan petani kopi lokal dari berbagai daerah di Indonesia — Aceh, Toraja, Flores, Bali, dan Java — untuk menghadirkan kopi berkualitas tinggi dengan harga yang adil bagi semua.
+                    </p>
+                    <p class="about-text">
+                        Setiap biji kopi yang kami sajikan dipilih secara selektif, di-roast dengan presisi, dan diseduh oleh barista terlatih. Kami percaya bahwa secangkir kopi yang baik bukan hanya soal rasa, tapi juga cerita di baliknya.
+                    </p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <div class="feature-icon">🌱</div>
+                            <div>
+                                <h4>100% Arabika Lokal</h4>
+                                <p>Biji kopi pilihan langsung dari petani Indonesia</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">🔥</div>
+                            <div>
+                                <h4>Fresh Roasted</h4>
+                                <p>Di-roast setiap minggu untuk kesegaran optimal</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">🤝</div>
+                            <div>
+                                <h4>Fair Trade</h4>
+                                <p>Harga adil untuk petani, kualitas terbaik untuk Anda</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section gallery-section" id="galeri">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Galeri</span>
+                <h2 class="section-title">Momen di <span class="highlight">Kedai Kami</span></h2>
+                <p class="section-desc">Suasana hangat dan nyaman yang selalu menanti Anda</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item large">
+                    <div class="gallery-placeholder">
+                        <span class="gallery-emoji">🏪</span>
+                        <span class="gallery-label">Interior Kedai</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <span class="gallery-emoji">☕</span>
+                        <span class="gallery-label">Latte Art</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <span class="gallery-emoji">🫘</span>
+                        <span class="gallery-label">Biji Kopi</span>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-placeholder">
+                        <span class="gallery-emoji">🍰</span>
+                        <span class="gallery-label">Pastry</span>
+                    </div>
+                </div>
+                <div class="gallery-item large">
+                    <div class="gallery-placeholder">
+                        <span class="gallery-emoji">👥</span>
+                        <span class="gallery-label">Komunitas Kopi</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact-section" id="kontak">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">Kontak</span>
+                <h2 class="section-title">Kunjungi <span class="highlight">Kami</span></h2>
+                <p class="section-desc">Kami tunggu kehadiran Anda di kedai kami</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>Alamat</h3>
+                    <p>Jl. Merdeka No. 45<br>Bandung, Jawa Barat 40115</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">🕐</div>
+                    <h3>Jam Buka</h3>
+                    <p>Senin - Jumat: 07:00 - 22:00<br>Sabtu - Minggu: 08:00 - 23:00</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📞</div>
+                    <h3>Telepon</h3>
+                    <p>(022) 1234-5678<br>+62 812-3456-7890</p>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <p>halo@kopinusantara.id<br>order@kopinusantara.id</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo">
+                        <span class="logo-icon">☕</span>
+                        <span class="logo-text">Kopi Nusantara</span>
+                    </a>
+                    <p class="footer-desc">Menghadirkan cita rasa kopi terbaik Indonesia langsung ke cangkir Anda sejak 2020.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Instagram">📷</a>
+                        <a href="#" class="social-link" aria-label="Twitter">🐦</a>
+                        <a href="#" class="social-link" aria-label="Facebook">📘</a>
+                        <a href="#" class="social-link" aria-label="TikTok">🎵</a>
+                    </div>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Menu</h4>
+                    <ul>
+                        <li><a href="#menu">Espresso</a></li>
+                        <li><a href="#menu">Manual Brew</a></li>
+                        <li><a href="#menu">Signature</a></li>
+                        <li><a href="#menu">Pastry</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Perusahaan</h4>
+                    <ul>
+                        <li><a href="#tentang">Tentang Kami</a></li>
+                        <li><a href="#">Karir</a></li>
+                        <li><a href="#">Franchise</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links-group">
+                    <h4>Bantuan</h4>
+                    <ul>
+                        <li><a href="#kontak">Kontak</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Kebijakan Privasi</a></li>
+                        <li><a href="#">Syarat & Ketentuan</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Kopi Nusantara. All rights reserved.</p>
+                <p>Dibuat dengan ❤️ di Indonesia</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
